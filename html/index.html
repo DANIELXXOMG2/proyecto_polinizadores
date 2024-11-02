@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal | Insectos Polinizadores</title>
+    <link rel="stylesheet" href="/front/style/style.css">
+    <link rel="shortcut icon" href="/front/img/descarga.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="/front/fontawesome-free-6.6.0-web/css/all.css  ">
+</head>
+<body>  
+<nav>
+    <h1>
+        Insectos Polinizadores
+    </h1><a href="{{ url_for('index') }}">
+        Inicio
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <a href="{{ url_for('categorias') }}">
+        Categorías
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <a href="{{ url_for('contacto') }}">
+        Contacto
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <a href="{{ url_for('reviews') }}">
+        Reviews
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <a href="{{ url_for('sobre') }}">
+        Sobre
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    
+</nav>
+    <hr>
+
+<div class="container">
+    <h2>Animales Polinizadores</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg/320px-Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg" alt="Tu primer animal" title="Abeja">
+    <p>Abeja</p>
+</div>    
+<hr class="linea">    
+    <footer>
+        <p>© 2024 Insectos Polinizadores</p>
+    </footer>
+</body>
+</html>
