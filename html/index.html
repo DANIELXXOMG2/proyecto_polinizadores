@@ -8,33 +8,32 @@
     <link rel="shortcut icon" href="/front/img/descarga.jpg" type="image/x-icon">
     <link rel="stylesheet" href="/front/fontawesome-free-6.6.0-web/css/all.css  ">
 </head>
-<body>  
-<nav>
-    <h1>
-        Insectos Polinizadores
-    </h1><a href="{{ url_for('index') }}">
-        Inicio
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
-    <a href="{{ url_for('categorias') }}">
-        Categorías
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
-    <a href="{{ url_for('contacto') }}">
-        Contacto
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
-    <a href="{{ url_for('reviews') }}">
-        Reviews
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
-    <a href="{{ url_for('sobre') }}">
-        Sobre
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
-    
-</nav>
-    <hr>
+<body> 
+    <nav>
+    <div class="user">
+        <p title="Sesion iniciada con:">
+            <i class="fa-regular fa-user"></i>
+            danielxxomg
+        </p>
+    </div>
+        <h1>
+            Insectos Polinizadores
+        </h1><a href="{{ url_for('index') }}">
+            Inicio
+        </a>
+        <a href="{{ url_for('categorias') }}">
+            Categorías
+        </a>
+        <a href="{{ url_for('contacto') }}">
+            Contacto
+        </a>
+        <a href="{{ url_for('reviews') }}">
+            Reviews
+        </a>
+        <a href="{{ url_for('sobre') }}">
+            Sobre
+        </a>
+    </nav>
 
 <div class="container">
     <h2>Animales Polinizadores</h2>

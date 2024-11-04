@@ -10,12 +10,10 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     color: white;
     width: 100%;
-}
-html {
-    width: 100%;
-    height: auto;
+    cursor: url(/front/img/bee--cursor.png) -20 10, auto;
 }
 .linea {
     width: 90%;
@@ -28,7 +26,7 @@ nav {
     display: flex;
     padding: 5px 10px;
     border-radius: 10px;
-    width: 100%;
+    width: 95%;
 }
 nav h1 {
     font-size: 100%;
@@ -43,27 +41,22 @@ nav .user {
     align-items: center;
     transition: all 1s;
 }
-nav .user:hover {
-    color: white;
-}
 nav .user p {
-    margin: 5px 0 ;
-}
-nav .user i {
-    margin-right: 10px;
+    margin: 0 ;
 }
 nav a {
     text-decoration: none;
     color: black;
-    padding: 5px;  
+    padding: 5px;
     width: 4.5%;
-    transition: 1s; 
+    transition: 1s;
     font-size: 15px;
     border-left: 1px solid black;
     padding: 15px;
 }
-nav a i {
-    margin: 10px 0 0 0;
+a, button {
+    cursor: url(/front/img/37dc9e7eb9b045f0a6846f0ab9baf147-2.png) -20 10, auto;
+
 }
 nav a:hover {
     background-color: black;
