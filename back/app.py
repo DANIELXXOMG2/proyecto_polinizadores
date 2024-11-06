@@ -23,7 +23,6 @@ def inicializar_bd():
             
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS Usuarios (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
                     nombre VARCHAR(255) NOT NULL,
                     email VARCHAR(255) NOT NULL,
                     password_ VARCHAR(255) NOT NULL
@@ -67,27 +66,27 @@ def register():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')  # Asegúrate de tener este archivo en templates
+    return render_template('index.html')  
 
 @app.route('/login')
 def login():
-    return render_template('login.html')  # Asegúrate de tener este archivo en templates
+    return render_template('login.html')  
 
 @app.route('/categorias')
 def categorias():
-    return render_template('categorias.html')  # Asegúrate de tener este archivo en templates
+    return render_template('categorias.html')  
 
 @app.route('/contacto')
 def contacto():
-    return render_template('contacto.html')  # Asegúrate de tener este archivo en templates
+    return render_template('contacto.html')  
 
 @app.route('/reviews')
 def reviews():
-    return render_template('reviews.html')  # Asegúrate de tener este archivo en templates
+    return render_template('reviews.html')  
 
 @app.route('/sobre')
 def sobre():
-    return render_template('sobre.html')  # Asegúrate de tener este archivo en templates
+    return render_template('sobre.html')  
 
 
 @app.route('/registrar_usuario', methods=['POST'])

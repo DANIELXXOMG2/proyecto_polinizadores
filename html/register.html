@@ -5,60 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Insectos Polinizadores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/descarga.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  
 </head>
 <body>
-<nav>
-<div class="user">
-    <p title="Sesion iniciada con:">
-        <i class="fa-regular fa-user"></i>
-        danielxxomg
-    </p>
-</div>
-    <h1>
-        Insectos Polinizadores
-    </h1><a href="{{ url_for('index') }}">
-        Inicio
-    </a>
-    <a href="{{ url_for('categorias') }}">
-        Categorías
-    </a>
-    <a href="{{ url_for('contacto') }}">
-        Contacto
-    </a>
-    <a href="{{ url_for('reviews') }}">
-        Reviews
-    </a>
-    <a href="{{ url_for('sobre') }}">
-        Sobre
-    </a>
-    
-</nav>
+<header>
+    <nav>
+    <div class="user">
+        <p title="Sesion iniciada con:">
+            <i class="fa-regular fa-user"></i>
+            danielxxomg
+        </p>
+    </div>
+        <h1>
+            Insectos Polinizadores
+        </h1>
+        <a href="{{ url_for('index') }}">
+            Inicio
+        </a>
+        <a href="{{ url_for('categorias') }}">
+            Categorías
+        </a>
+        <a href="{{ url_for('contacto') }}">
+            Contacto
+        </a>
+        <a href="{{ url_for('reviews') }}">
+            Reviews
+        </a>
+        <a href="{{ url_for('sobre') }}">
+            Sobre
+        </a>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <form action="/registrar_usuario" method="post">
+                <h2>Register</h2>
+                <img src="/front/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
 
-<div class="container">
-<form action="/registrar_usuario" method="post">
-<fieldset>
-    <h2>Register</h2>
-    <img src="/front/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
+                <label for="nombre">Tu Usuario</label><br>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
 
-    <label for="nombre">Tu Usuario</label><br>
-    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
+                <label for="email">Tu Correo</label> <br>
+                    <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>
+                
+                <label for="password_">Contraseña</label> <br>
+                    <input type="password" name="password_" id="password_" placeholder="Ingresa tu contraseña aqui" required> <br>
 
-    <label for="email">Tu Correo</label> <br>
-    <input type="email" name="email" id="email" placeholder="Ingresa tu email   aqui" required> <br>
-    
-    <label for="password_">Contraseña</label> <br>
-    <input type="password" name="password_" id="password_" placeholder="Ingresa tu contraseña aqui" required> <br>
-
-    <button id="submit" type="submit">Registrate</button>
-    <a href="{{ url_for('login') }}">Login</a>
-</fieldset>
-</form>
-</div>    
+                <button id="submit" type="submit">Registrate</button>
+                <a href="{{ url_for('login') }}">Login</a>
+        </form>
+    </div> 
+</main>   
 <hr class="linea">    
-    <footer>
-        <p>© 2024 Insectos Polinizadores</p>
-    </footer>
+<footer>
+    <p>© 2024 Insectos Polinizadores</p>
+</footer>
 </body>
 </html>

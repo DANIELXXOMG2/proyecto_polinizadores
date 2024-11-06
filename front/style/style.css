@@ -18,28 +18,38 @@ body {
 .linea {
     width: 90%;
 }
+a, button, #submit {
+    cursor: url(/front/img/bee--pointer.png) -20 10, auto;
+}
+input {
+    cursor: url(/front/img/escarabajo--pointer.png), auto;
+}
+header {
+    width: 95%;
+}
 nav {
     transition: 1s;
     background-color: #eeba0b;
     justify-content: space-between;
     align-items: center;
     display: flex;
-    padding: 5px 10px;
     border-radius: 10px;
-    width: 95%;
 }
 nav h1 {
     font-size: 100%;
-    margin: 0 25%;
+    margin: 0.1% 25%;
     width: 60%;
     transition: 1s;
     font-size: 25px;
+    color: black;
 }
 nav .user {
     width: 15%;
     display: flex;
     align-items: center;
     transition: all 1s;
+    margin-left: 10px;
+    color: black;
 }
 nav .user p {
     margin: 0 ;
@@ -48,39 +58,36 @@ nav a {
     text-decoration: none;
     color: black;
     padding: 5px;
-    width: 4.5%;
+    background-color: #fccb4662;
     transition: 1s;
+    font-weight: 500    ;
     font-size: 15px;
     border-left: 1px solid black;
     padding: 15px;
 }
-a, button {
-    cursor: url(/front/img/37dc9e7eb9b045f0a6846f0ab9baf147-2.png) -20 10, auto;
-
-}
 nav a:hover {
     background-color: black;
     color: whitesmoke;
+}
+main {
+    width: 100%;
+    margin: auto;
+    background-color: rgba(245, 222, 179, 0.397);
 }
 .container {
     margin: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
     align-items: center;
-    background-color: #333533;
     width: 30%;
     padding: 20px;
     transition: 1s;
     border-radius: 20px;
+    background-color: #333533;
 }
 .container:hover {
     width: 31%;
-}
-fieldset h2, input, img {
-    transition: all 1s;
-    margin-bottom: 0;
 }
 .container img {
     width: 6rem;
@@ -92,58 +99,59 @@ form {
     width: 70%;
     flex-direction: column;
     align-items: center;
-}
-fieldset {
-    width: 90%;
     background-color: #202020;
     border-radius: 8px;
     border: 3px solid #eeba0b;
+    transition: 1s;
 }
-fieldset input {
+form h2, input, img {
+    transition: all 1s;
+    margin-bottom: 0;
+}
+form input {
     font-size: 12px;
     width: 70%;
     text-align: center;
     padding: 5px;
     margin-bottom: 10px;
 }
-#password {
-    margin: 0 0 1rem 0;
+form input:hover {
+    background-color: #e8f5e5;
 }
-footer p {
-    margin: 0 0 5px 0;
-}
-button{
-    background-color: white;
-    color: black;
-    border: none;
-    padding: 10px;
-    width: 45%;
-    cursor: pointer;
-    transition: 1s;
-    border-radius: 8px;
-    background-color: #eeba0b;
-    margin: 0 0 20px 0;
-    font-size: 13px;
-}
-fieldset a {
+form a {
     text-decoration: none;
     color: white;
     padding: 10px;
-    transition: 1s;
-    padding: 4px;
-    margin-left: 10px;
+    transition: 0.7s;
+    margin-bottom: 10px;
+    width: 70%;
 }
-fieldset a:hover {
-    color: whitesmoke;
-    margin-left: 20px;
+form a:hover {
+    background-color: #202222;
 }
-
-fieldset button:hover {
+form button{
+        background-color: white;
+        color: black;
+        border: none;
+        padding: 10px;
+        width: 45%;
+        transition: 1s;
+        border-radius: 8px;
+        background-color: #eeba0b;
+        margin: 0 0 20px 0;
+        font-size: 13px;
+}
+form button:hover {
     width: 40%;
     background-color: green;
     color: white;
 }
-
+#password {
+    margin: 0 0 1rem 0;
+}
 pre {
     margin: 0;
+}
+footer p {
+        margin: 0 0 5px 0;
 }
