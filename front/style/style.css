@@ -6,10 +6,10 @@ body {
     background-attachment: fixed;
     font-family: Raleway;
     min-height: 100vh;
+    align-items: center;
     margin: 0;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
     color: white;
     width: 100%;
@@ -17,6 +17,10 @@ body {
 }
 .linea {
     width: 90%;
+}
+a {
+    text-decoration: none;
+    color: white;
 }
 a, button, #submit {
     cursor: url(/front/img/bee--pointer.png) -20 10, auto;
@@ -52,7 +56,11 @@ nav .user {
     color: black;
 }
 nav .user p {
-    margin: 0 ;
+    display: flex;
+    justify-content: space-evenly;
+}
+nav .user p i {
+    margin-right: 5px;
 }
 nav a {
     text-decoration: none;
@@ -60,7 +68,7 @@ nav a {
     padding: 5px;
     background-color: #fccb4662;
     transition: 1s;
-    font-weight: 500    ;
+    font-weight: 500;
     font-size: 15px;
     border-left: 1px solid black;
     padding: 15px;
@@ -70,15 +78,27 @@ nav a:hover {
     color: whitesmoke;
 }
 main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     margin: auto;
+    padding: 20px;
+    border: 3px solid black;
     background-color: rgba(245, 222, 179, 0.397);
+    color: black;
+}
+
+main p {
+    width: 40%;
+    text-align: justify;
 }
 .container {
     margin: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    color: white;
     align-items: center;
     width: 30%;
     padding: 20px;
@@ -96,6 +116,7 @@ main {
 }
 form {
     display: flex;
+    text-align: center;
     width: 70%;
     flex-direction: column;
     align-items: center;
@@ -152,6 +173,47 @@ form button:hover {
 pre {
     margin: 0;
 }
-footer p {
-        margin: 0 0 5px 0;
+footer {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+footer b {
+    margin: 0 0 10px 0;
+}
+footer .menu p{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+footer .menu span {
+    display: flex;
+    justify-content: space-around;
+}
+footer .menu span a {
+    padding: 2px;
+}
+section {
+    display: flex;
+    width: 500px;
+    justify-content: center;
+    height: 286px;
+    text-align: center;
+}
+section img {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 3;
+    transition: 0.5s ease;
+}
+section img:hover {
+    cursor: crosshair;
+    border: 1px solid blue;
+    width: 120px;
+    opacity: 1;
+    filter: contrast(120%);
 }

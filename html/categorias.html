@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias | Insectos Polinizadores</title>
-    <link rel="stylesheet" href="/front/style/style.css">
-    <link rel="shortcut icon" href="/front/img/descarga.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="/front/fontawesome-free-6.6.0-web/css/all.css  ">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
 </head>
 <body>
+<header>
 <nav>
     <h1>Insectos Polinizadores</h1>
     <a href="index.html">Inicio</a
@@ -17,7 +18,8 @@
     ><a href="reviews.html">Reviews</a
     ><a href="sobre.html">Sobre</a>
 </nav>
-    <hr>
+</header>
+<hr>
 
 <div class="container">
     <h2>Animales Polinizadores</h2>
