@@ -26,8 +26,49 @@
 
 </div>   
 <hr class="linea">    
-    <footer>
-        <p>© 2024 Insectos Polinizadores</p>
-    </footer>
+<footer>
+    <div class="menu" title="Navegación">
+        <p>
+            <b>Navegacion</b> 
+                <a href="{{ url_for('index') }}">
+                    Inicio
+                </a>
+                <a href="{{ url_for('categorias') }}">
+                    Categorías
+                </a>
+                <a href="{{ url_for('reviews') }}">
+                    Reviews
+                </a>
+                <a href="{{ url_for('sobre') }}">
+                    Sobre
+                </a>
+        </p>     
+    </div>
+    <div class="menu" title="Para contactar a danielxxomg">
+        <p>
+            <b>Contactanos</b>
+            <a href="{{ url_for('contacto') }}">
+                Contacto Aqui    
+            </a>
+        </p>
+    </div>
+    <div class="menu" title="Mis redes sociales">
+        <p>
+            <b>Redes Sociales</b>
+            <span>    
+                <a href="" target="_blank" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a
+                ><a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores" target="_blank" title="Github">
+                    <i class="fa-brands fa-github"></i>
+                </a
+                ><a href="https://www.tiktok.com/@danielxxomg" target="_blank" title="Tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </span>
+        </p>
+    </div>
+    <p>© 2024 Insectos Polinizadores</p>
+</footer>
 </body>
 </html>

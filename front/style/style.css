@@ -46,6 +46,9 @@ nav h1 {
     transition: 1s;
     font-size: 25px;
     color: black;
+    background: linear-gradient(to right, #000000, orange);
+    background-clip: text;
+    color: transparent;
 }
 nav .user {
     width: 15%;
@@ -66,7 +69,9 @@ nav a {
     text-decoration: none;
     color: black;
     padding: 5px;
-    background-color: #fccb4662;
+    background: linear-gradient(to right, #000000, #457b9d);
+    background-clip: text;
+    color: transparent;
     transition: 1s;
     font-weight: 500;
     font-size: 15px;
@@ -74,8 +79,7 @@ nav a {
     padding: 15px;
 }
 nav a:hover {
-    background-color: black;
-    color: whitesmoke;
+    color: black;
 }
 main {
     display: flex;
@@ -93,53 +97,62 @@ main p {
     width: 40%;
     text-align: justify;
 }
-.container {
-    margin: auto;
+form {
     display: flex;
+    margin: auto;
+    width: 25%;
+    max-width: 50rem;
     justify-content: center;
-    flex-direction: column;
-    color: white;
     align-items: center;
-    width: 30%;
+    color: white;
     padding: 20px;
-    transition: 1s;
+    text-align: center;
+    flex-direction: column;
+    background-color: #202020;
     border-radius: 20px;
-    background-color: #333533;
+    transition: 1s;
 }
-.container:hover {
-    width: 31%;
+form:hover {
+    width: 26%;
 }
-.container img {
+fieldset {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid #eeba0b;
+    border-radius: 20px;
+    padding: 0 5% 0 5%;
+}
+fieldset:hover {
+    transition: 2s;
+    border: 3px solid #f6aa1c;
+}
+fieldset img {
     width: 6rem;
     transition: 1s;
     margin-bottom: 10px;
 }
-form {
-    display: flex;
-    text-align: center;
-    width: 70%;
-    flex-direction: column;
-    align-items: center;
-    background-color: #202020;
-    border-radius: 8px;
-    border: 3px solid #eeba0b;
-    transition: 1s;
+fieldset h2 {
+    background: linear-gradient(to right, #f6bd60, #457b9d);
+    background-clip: text;
+    color: transparent;
 }
-form h2, input, img {
+fieldset h2, input, img {
     transition: all 1s;
     margin-bottom: 0;
 }
-form input {
+fieldset input {
+    width: 80%;
     font-size: 12px;
-    width: 70%;
     text-align: center;
     padding: 5px;
     margin-bottom: 10px;
 }
-form input:hover {
+fieldset input:hover {
     background-color: #e8f5e5;
 }
-form a {
+fieldset a {
     text-decoration: none;
     color: white;
     padding: 10px;
@@ -147,22 +160,24 @@ form a {
     margin-bottom: 10px;
     width: 70%;
 }
-form a:hover {
+fieldset a:hover {
     background-color: #202222;
 }
-form button{
-        background-color: white;
-        color: black;
-        border: none;
-        padding: 10px;
-        width: 45%;
-        transition: 1s;
-        border-radius: 8px;
-        background-color: #eeba0b;
-        margin: 0 0 20px 0;
-        font-size: 13px;
+fieldset button{
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px;
+    width: 55%;
+    transition: 1s;
+    border-radius: 8px;
+    background-color: #eeba0b;
+    margin: 0 0 20px 0;
+    font-size: 13px;
 }
-form button:hover {
+fieldset button:hover {
     width: 40%;
     background-color: green;
     color: white;
@@ -178,23 +193,35 @@ footer {
     display: flex;
     justify-content: space-around;
     width: 50%;
+    padding: 0 7rem 0 7rem;
+    border-top: 1px solid white; border-left: 1px solid white; border-right: 1px solid white ;
+    background-color: rgba(211, 211, 211, 0.402);
+}
+footer p {
+    display: flex;
+    align-items: center;
 }
 footer b {
     margin: 0 0 10px 0;
 }
+footer .menu {
+    padding: 10px;
+}
+footer .menu:hover {
+    background-color: rgba(211, 211, 211, 0.21);
+}
 footer .menu p{
     display: flex;
-    justify-content: start;
-    align-items: start;
     flex-direction: column;
+    align-items: normal;
     gap: 0.5rem;
 }
-footer .menu span {
+span {
     display: flex;
     justify-content: space-around;
-}
-footer .menu span a {
-    padding: 2px;
+}  
+span i {
+    font-size: 1.1rem;
 }
 section {
     display: flex;
