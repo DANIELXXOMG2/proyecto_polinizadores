@@ -126,7 +126,7 @@ fieldset {
 }
 fieldset:hover {
     transition: 2s;
-    border: 3px solid #f6aa1c;
+    border: 3px solid #ffe6a7;
 }
 fieldset img {
     width: 6rem;
@@ -174,7 +174,7 @@ fieldset button{
     transition: 1s;
     border-radius: 8px;
     background-color: #eeba0b;
-    margin: 0 0 20px 0;
+    margin: 5px 0 20px 0;
     font-size: 13px;
 }
 fieldset button:hover {
@@ -184,9 +184,6 @@ fieldset button:hover {
 }
 #password {
     margin: 0 0 1rem 0;
-}
-pre {
-    margin: 0;
 }
 footer {
     font-size: 12px;
@@ -235,12 +232,26 @@ section img {
     flex-grow: 1;
     object-fit: cover;
     opacity: 3;
-    transition: 0.5s ease;
+    transition: 2s ease;
 }
 section img:hover {
     cursor: crosshair;
-    border: 1px solid blue;
+    border: 1px solid #0ead69;
     width: 120px;
     opacity: 1;
     filter: contrast(120%);
+}
+section pre {
+    display: flex;
+    width: 6%;
+    margin: 0;
+    background-color: #96ebb584;
+}
+section pre a {
+    /* padding: 1px; */
+    display: inline;
+    vertical-align: bottom;
+    align-items: end;
+    text-align: center;
+    width: 100%;
 }

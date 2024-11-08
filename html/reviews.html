@@ -9,22 +9,43 @@
     <link rel="stylesheet" href="/front/fontawesome-free-6.6.0-web/css/all.css  ">
 </head>
 <body>
-<nav>
-    <h1>Insectos Polinizadores</h1>
-    <a href="index.html">Inicio</a
-    ><a href="categorias.html">Categorias</a
-    ><a href="contacto.html">Contacto</a
-    ><a href="reviews.html">Reviews</a
-    ><a href="sobre.html">Sobre</a>
-</nav>
-    <hr>
+<header>
+    <nav>
+        <div class="user">
+            <p title="Sesion iniciada con:">
+                <i class="fa-regular fa-user"></i>
+                danielxxomg
+            </p>
+        </div>
+        <h1>
+            Insectos Polinizadores
+        </h1>
+        <a href="{{ url_for('index') }}">
+            Inicio
+        </a>
+        <a href="{{ url_for('categorias') }}">
+            Categorías
+        </a>
+        <a href="{{ url_for('contacto') }}">
+            Contacto
+        </a>
+        <a href="{{ url_for('reviews') }}">
+            Reviews
+        </a>
+        <a href="{{ url_for('sobre') }}">
+            Sobre
+        </a>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <h2>Animales Polinizadores</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg/320px-Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg" alt="Tu primer animal" title="Abeja">
+        <p>Abeja</p>
 
-<div class="container">
-    <h2>Animales Polinizadores</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg/320px-Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg" alt="Tu primer animal" title="Abeja">
-    <p>Abeja</p>
+    </div>   
+</main>
 
-</div>   
 <hr class="linea">    
 <footer>
     <div class="menu" title="Navegación">
