@@ -19,6 +19,10 @@ body {
     margin-top: 20px;
     width: 90%;
 }
+h2 {
+    /* font-family: Sour Gummy; */
+    font-family: Faculty Glyphic;
+}
 a {
     text-decoration: none;
     color: white;
@@ -90,14 +94,14 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin: auto;
+    margin: 0;
     padding: 20px;
     border: 3px solid black;
     background-color: rgba(91, 100, 109, 0.423);
     color: white;
 }
 main h2 {
-    text-shadow: #e09f3e 1px 1px 1px;
+    text-shadow: black 1px 1px 10px;
 }
 main p {
     width: 40%;
@@ -188,7 +192,8 @@ form fieldset button{
     font-size: 13px;
 }
 form fieldset button:hover {
-    width: 40%;
+    width: 50%;
+    border-radius: 15px;
     background-color: green;
     color: white;
 }
@@ -258,11 +263,16 @@ form fieldset button:hover {
 }
 section {
     display: flex;
-    width: 500px;
+    width: 600px;
+    border: 3px solid #3d5a80   ;
     justify-content: center;
     height: 286px;
+    transition: 3s;
     text-align: center;
-    color: white    ;
+    color: white;
+}
+section:hover {
+    width: 820px;
 }
 section img {
     width: 0px;

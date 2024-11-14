@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body> 
+<body>
 <header>
     <nav>
         <div class="user">
@@ -23,9 +23,6 @@
         </h1><a href="{{ url_for('index') }}">
             Inicio
         </a>
-        <a href="{{ url_for('categorias') }}">
-            Categorías
-        </a>
         <a href="{{ url_for('contacto') }}">
             Contacto
         </a>
@@ -37,21 +34,32 @@
         </a>
     </nav>
 </header>
+<h2 class="text-6xl w-8/12 text-center mt-40 mb-40">
+    Bienvenidos al Corredor Ecológico de Villavicencio <br> <br> 
+    Insectos Polinizadores
+</h2>
 <main>
-    <section>
+    <h2 class="text-4xl m-10">
+        Villavicencio: Donde la Naturaleza Hace Magia
+    </h2>
+    <p>
+        En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
+        
+    </p>
+    <section class="mb-10 mt-10">
             <img src="/front/img/Lbee.png" alt="Abeja" title="Abeja"
-                ><pre
-                    ><a href="{{ url_for('categorias') }}" title="Click para ir a su categoria">
+            ><pre
+                ><a href="">                
 A
 b
 e
 j
 a
-                    </a>
+                </a>
                 </pre>
             <img src="/front/img/Lmariposa.png" alt="Mariposa" title="Mariposa"
                 ><pre
-                    ><a href="{{ url_for('categorias') }}" title="Click para ir a su categoria">
+                ><a href="">
 M
 a
 r
@@ -60,21 +68,21 @@ p
 o
 s
 a
-                    </a>
+                </a>
                 </pre>
             <img src="/front/img/Lfly.png" alt="Mosca" title="Mosca" id="mosca"
                 ><pre
-                    ><a href="{{ url_for('categorias') }}" title="Click para ir a su categoria">
+                ><a href="">
 M
 o
 s
 c
 a
-                        </a>
+                </a>
                 </pre> 
             <img src="/front/img/Lescarabajo.png" alt="Escarabajo" title="Escarabajo" id="escarabajo"
                 ><pre
-                    ><a href="{{ url_for('categorias') }}" title="Click para ir a su categoria" id="escarabajo">
+                ><a href="">
 E
 s
 c
@@ -85,15 +93,10 @@ b
 a
 j
 o
-                    </a>
+                </a>
                 </pre> 
         </section>
-    <h2 class="text-3xl mt-5 mb-5">Bienvenidos al Corredor Ecológico de Villavicencio: Insectos Polinizadores</h2>
-    <p>
-        En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
-        
-    </p>
-    <hr class="linea">
+    <hr class="mt-5 mb-5 w-3/4">
     <p class="mt-5">        
         Únete a nosotros en la celebración de la naturaleza y el fomento de prácticas sostenibles que aseguren un futuro próspero para nuestros polinizadores.    
     </p>
@@ -161,9 +164,6 @@ o
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}">
                     Inicio
-                </a>
-                <a href="{{ url_for('categorias') }}">
-                    Categorías
                 </a>
                 <a href="{{ url_for('reviews') }}">
                     Reviews

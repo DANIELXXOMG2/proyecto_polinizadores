@@ -24,9 +24,6 @@
         <a href="{{ url_for('index') }}">
             Inicio
         </a>
-        <a href="{{ url_for('categorias') }}">
-            Categorías
-        </a>
         <a href="{{ url_for('contacto') }}">
             Contacto
         </a>
@@ -39,13 +36,13 @@
     </nav>
 </header>
 <main>
-    <form action="/registrar_usuario" method="post">
+    <form action="/login" method="post">
         <fieldset>
                 <h2>Login</h2>
                 <img src="/front/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
 
-                <label for="nombre">Tu Usuario</label><br>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
+                <!-- <label for="nombre">Tu Usuario</label><br>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br> -->
 
                 <label for="email">Tu Correo</label> <br>
                     <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>
@@ -65,9 +62,6 @@
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}">
                     Inicio
-                </a>
-                <a href="{{ url_for('categorias') }}">
-                    Categorías
                 </a>
                 <a href="{{ url_for('reviews') }}">
                     Reviews

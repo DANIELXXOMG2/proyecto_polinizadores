@@ -24,9 +24,6 @@
         <a href="{{ url_for('index') }}">
             Inicio
         </a>
-        <a href="{{ url_for('categorias') }}">
-            Categorías
-        </a>
         <a href="{{ url_for('contacto') }}">
             Contacto
         </a>
@@ -54,7 +51,7 @@
                     <input type="password" name="password_" id="password_" placeholder="Ingresa tu contraseña aqui" required> <br>
 
                 <button id="submit" type="submit">Registrate</button>
-                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('login2') }}">Login</a>
         </fieldset>        
     </form>
 </main>   
@@ -65,9 +62,6 @@
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}">
                     Inicio
-                </a>
-                <a href="{{ url_for('categorias') }}">
-                    Categorías
                 </a>
                 <a href="{{ url_for('reviews') }}">
                     Reviews
