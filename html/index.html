@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body> 
 <header>
@@ -87,14 +88,72 @@ o
                     </a>
                 </pre> 
         </section>
-    <h2>Bienvenidos al Corredor Ecológico de Villavicencio: Insectos Polinizadores</h2>
+    <h2 class="text-3xl mt-5 mb-5">Bienvenidos al Corredor Ecológico de Villavicencio: Insectos Polinizadores</h2>
     <p>
         En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
         
     </p>
-    <p>        
+    <hr class="linea">
+    <p class="mt-5">        
         Únete a nosotros en la celebración de la naturaleza y el fomento de prácticas sostenibles que aseguren un futuro próspero para nuestros polinizadores.    
     </p>
+
+    <div class="container">
+        <fieldset class="grid-item" title="Nombre cientifico: Apidae">
+            <legend>Abeja</legend>
+            <img src="/front/img/abejag.webp" alt="Abeja">
+            <b class="text-xl">Abejas (Apidae)</b>
+            <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
+                Su morfología les permite recolectar y transferir polen de manera efectiva.
+            </p>
+            <p class="bg-green-700">
+                Informacion extra
+                <a href=""><b>aqui!</b></a>
+            </p>
+        </fieldset>
+        <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
+            <legend>Mariposa</legend>
+            <img src="/front/img/mariposag.jpg" alt="Mariposa">
+            <b class="text-xl">Mariposas (Lepidoptera)</b>
+            <p class="border-0">
+                Las mariposas contribuyen significativamente a la fertilización de muchas plantas. <br>
+                Su probóscide especializada les permite acceder al néctar de flores complejas.
+            </p>
+            <p class="bg-green-700">
+                Informacion extra
+                <a href=""><b>aqui!</b></a>
+            </p>
+        </fieldset>
+        <fieldset class="grid-item" title="Nombre cientifico: Diptera">
+            <legend>Mosca</legend>
+            <img src="/front/img/moscag.jpg" alt="Mosca">
+            <b class="text-xl">Moscas (Diptera)</b>
+            <p class="border-0">
+                Las moscas son polinizadoras efectivas en muchos ecosistemas. <br>
+                Son atraídas por flores con olores fuertes y colores brillantes.
+            </p>
+            <p class="bg-green-700">
+                Informacion extra
+                <a href=""><b>aqui!</b></a>
+            </p>
+        </fieldset>
+        <fieldset class="grid-item" title="Nombre cientifico: Coleoptera">
+            <legend>Escarabajo</legend>
+            <img src="/front/img/escarabajog.jpg" alt="Escarabajo">
+            <b class="text-xl">Escarabajos (Coleoptera)</b>
+            <p class="border-0">
+                Los escarabajos son polinizadores primarios en ecosistemas antiguos. <br>
+                Su alimentación en flores contribuye a la polinización de diversas plantas.
+            </p>
+            <p class="bg-green-700">
+                Informacion extra
+                <a href=""><b>aqui!</b></a>
+            </p>
+        </fieldset>
+
+
+
+    </div>    
 </main>       
 <footer>
     <div class="menu" title="Navegación">
