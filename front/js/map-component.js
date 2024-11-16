@@ -6,17 +6,20 @@ function mapComponent() {
             try {
                 console.log('Iniciando carga del mapa...');
                 
-                // Crear el mapa básico
+                if (typeof google === 'undefined') {
+                    console.error('Google Maps no está cargado');
+                    return;
+                }
+
                 this.map = new google.maps.Map(document.getElementById('map'), {
-                    center: MAP_CONFIG.center,
-                    zoom: MAP_CONFIG.zoom,
+                    ...MAP_CONFIG,
                     mapTypeControl: true,
                     streetViewControl: true,
                     fullscreenControl: true,
                     zoomControl: true
                 });
 
-                // Agregar un marcador simple
+                // Agregar marcador
                 new google.maps.Marker({
                     position: MAP_CONFIG.center,
                     map: this.map,
@@ -26,6 +29,14 @@ function mapComponent() {
                 console.log('Mapa cargado correctamente');
             } catch (error) {
                 console.error('Error al cargar el mapa:', error);
+            }
+        },
+
+        centerMap() {
+            if (this.map) {
+                this.map.setCenter(MAP_CONFIG.center);
+            } else {
+                console.error('El mapa no está inicializado');
             }
         }
     };

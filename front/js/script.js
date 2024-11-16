@@ -1,6 +1,7 @@
 const verticalDiv = document.querySelector('.vertical');
 
-verticalDiv.addEventListener('click', () => {
+if (verticalDiv) {
+      verticalDiv.addEventListener('click', () => {
       verticalDiv.classList.toggle('mt-32'); 
-});
-
+    });
+}

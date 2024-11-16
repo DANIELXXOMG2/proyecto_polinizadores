@@ -415,11 +415,12 @@ span {
 span i {
     font-size: 1.1rem;
 }
-/* .container2 {
+.container2 {
     display: flex;
+    width: 80%;
     flex-direction: column;
     background-color: rgb(154,188,95);
-} */
+}
 
 /* Estilos para el mapa */
 #map {

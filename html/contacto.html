@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <meta name="description" content="Contacta con nosotros para más información sobre el corredor ecológico y los insectos polinizadores">
+    <meta name="robots" content="noindex, follow">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contacto | Insectos Polinizadores">
+    <meta property="og:description" content="¿Tienes preguntas sobre los insectos polinizadores? Contáctanos">
+    <meta property="og:image" content="{{ url_for('static', filename='img/butterfly.jpg') }}">
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
     <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 </head>
 <body>
     <header>

@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accede a nuestra plataforma informativa sobre insectos polinizadores">
+    <meta name="robots" content="noindex, nofollow">    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Acceso | Insectos Polinizadores">
+    <meta property="og:description" content="Inicia sesión para explorar el mundo de los insectos polinizadores">
+    <meta property="og:image" content="{{ url_for('static', filename='img/princi.png') }}">
     <title>Login | Insectos Polinizadores</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/princi.png') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
     <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
-
-</head>
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 <body>
 <header>
     <nav>
-        <div class="user">  
-            <p title="Sesion iniciada con:">
-                <i class="fa-regular fa-user"></i>
-                danielxxomg
-            </p>
+        <div class="user">
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center">
+                    <a href="">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg border-l-2 text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                </p>
+            {% endif %}
         </div>
         <h1>
             Insectos Polinizadores
@@ -44,9 +63,6 @@
         <fieldset>
                 <h2>Login</h2>
                 <img src="/front/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
-
-                <!-- <label for="nombre">Tu Usuario</label><br>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br> -->
 
                 <label for="email">Tu Correo</label> <br>
                     <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>

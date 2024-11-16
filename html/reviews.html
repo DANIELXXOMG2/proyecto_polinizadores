@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre las especies de insectos polinizadores presentes en el corredor ecológico de Villavicencio">
+    <meta name="keywords" content="reviews insectos, polinizadores, abejas, mariposas, escarabajos, moscas">
+    <!-- Open Graph  -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Reviews de Insectos Polinizadores | Villavicencio">
+    <meta property="og:description" content="Galería y reviews de los principales insectos polinizadores de Villavicencio">
+    <meta property="og:image" content="{{ url_for('static', filename='img/abejag.webp') }}">
     <title>Reviews | Insectos Polinizadores</title>   
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
     <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
-
-</head>
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 <body>
 <header>
     <nav>

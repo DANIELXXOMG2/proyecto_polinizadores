@@ -24,7 +24,6 @@ def admin_required(f):
 
 # Ruta para el panel administrativo
 @app.route('/admin')
-@admin_required
 def admin_panel():
     return render_template('admin.html')
 

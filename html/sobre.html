@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre | Insectos Polinizadores</title>
+    <meta name="description" content="Conoce el corredor ecológico en Villavicencio y su importancia para los insectos polinizadores por la Uniminuto">
+    <meta name="keywords" content="mapa corredor ecológico, Uniminuto, Villavicencio, conservación, biodiversidad">
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Sobre el Corredor Ecológico Uniminuto | Insectos Polinizadores">
+    <meta property="og:description" content="Explora el mapa interactivo del corredor ecológico de Villavicencio">
+    <meta property="og:image" content="{{ url_for('static', filename='img/butterfly.jpg') }}">
+
+        <title>Sobre | Insectos Polinizadores</title>
+    <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
-    <!-- Configuracion del mapa -->
-    <script src="{{ url_for('static', filename='js/map-config.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/map-component.js') }}"></script>
+    <!--API MAPA Vinculacion-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJH77ncqZk53-C7mlslENjqKceXTQIzoc&libraries=places,drawing" async defer></script>    
+    <script src="{{ url_for('static', filename='js/map-config.js') }}"></script>    <!--Configuracion del mapa-->
+    <script src="{{ url_for('static', filename='js/map-component.js') }}"></script>     <!--Componente del mapa-->
     <!-- FrameWroks -->
     <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
-
-    
-
-
-    
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
 <header>
@@ -58,15 +64,14 @@
         </a>
     </nav>
 </header>
-
 <main>
     <div class="container2 mt-8">
         <h2 class="text-2xl font-bold mb-4">Corredor Ecológico de Villavicencio</h2>
         
         <!-- Componente del mapa -->
         <div x-data="mapComponent" 
-             x-init="$nextTick(() => initMap())" 
-             class="w-full">
+            x-init="$nextTick(() => initMap())" 
+            class="w-full">
             
             <!-- Contenedor del mapa -->
             <div id="map" class="w-full h-[600px] rounded-lg shadow-lg mb-4"></div>
@@ -125,49 +130,5 @@
     </div>
     <p>© 2024 Insectos Polinizadores</p>
 </footer>
-    <!-- Scripts al final del body -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJH77ncqZk53-C7mlslENjqKceXTQIzoc&libraries=places,drawing" async defer></script>    <!--API MAPA Vinculacion-->
-    <script src="{{ url_for('static', filename='js/map-config.js') }}"></script>
-    <script>
-        // Definimos el componente directamente en la página
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('mapComponent', () => ({
-                map: null,
-
-                async initMap() {
-                    try {
-                        console.log('Iniciando carga del mapa...');
-                        
-                        // Esperamos a que Google Maps esté disponible
-                        if (typeof google === 'undefined') {
-                            console.error('Google Maps no está cargado');
-                            return;
-                        }
-
-                        this.map = new google.maps.Map(document.getElementById('map'), {
-                            center: MAP_CONFIG.center,
-                            zoom: MAP_CONFIG.zoom,
-                            mapTypeControl: true,
-                            streetViewControl: true,
-                            fullscreenControl: true,
-                            zoomControl: true
-                        });
-
-                        console.log('Mapa cargado correctamente');
-                    } catch (error) {
-                        console.error('Error al cargar el mapa:', error);
-                    }
-                },
-
-                centerMap() {
-                    if (this.map) {
-                        this.map.setCenter(MAP_CONFIG.center);
-                    } else {
-                        console.error('El mapa no está inicializado');
-                    }
-                }
-            }));
-        });
-    </script>
 </body>
 </html>
