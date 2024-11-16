@@ -1,0 +1,11 @@
+[33mc8de93b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Se añade el mapa todo bug pero se añadio mas rato se arregla
+[33mc8de501[m Se añadio logout funcional y cuadre de cositas falta...
+[33m236d8cf[m Se adjunto video vista y se cuadraron unas cositas, se creo y linkeo el javascript
+[33m078f06f[m Se ajusta titulo principal en index y en proceso de ajustes generales
+[33m376e093[m Se implemento tecnologia taildwind y se adjunto menu interactivo de insectos
+[33mb25e289[m Se corrigio redireccionamiento en <nav> y se actualizo section en index.html
+[33m548f3f3[m Se quito un contenedor innecesario en los formularios register/login, + ajuste de etiquetas
+[33m7a70525[m Se implementar footer & iconos interactivos en la pagina principal
+[33m6ad8778[m Subi el archivo incorrecto, culpa de onedrive
+[33mcb18c6e[m Icono abejita
+[33me480e87[m[33m ([m[1;32msecundaria[m[33m)[m Inicializacion proyecto + conexion with flask

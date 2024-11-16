@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
-    <script src="https://cdn.tailwindcss.com"></script> 
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+
 </head>
 <body>
 <header>
     <nav>
         <div class="user">
-            <p title="Sesion iniciada con:">
+            <p title="Registrate :D">
                 <i class="fa-regular fa-user"></i>
-                danielxxomg
+                Registrate ahora
             </p>
         </div>
         <h1>
@@ -48,7 +52,7 @@
                     <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>
                 
                 <label for="password_">Contraseña</label> <br>
-                    <input type="password" name="password_" id="password_" placeholder="Ingresa tu contraseña aqui" required> <br>
+                    <input type="password" name="password_" id="password_" minlength="5"  placeholder="Ingresa tu contraseña aqui" required> <br>
 
                 <button id="submit" type="submit">Registrate</button>
                 <a href="{{ url_for('login2') }}">Login</a>

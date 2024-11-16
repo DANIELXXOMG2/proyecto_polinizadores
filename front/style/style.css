@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     font-family: Raleway;
     min-height: 100vh;
+    scrollbar-width: none;
     align-items: center;
     margin: 0;
     display: flex;
@@ -57,11 +58,17 @@ nav h1 {
 }
 nav .user {
     display: flex;
-    width: 15%;
+    width: 25%;
     transition: all 1s;
-    margin-left: 10px;
     justify-items: center;
     color: black;
+    padding: 10px 0 10px 10px;
+}
+nav .user:hover {
+    border: 1px solid white;
+    background-color: #f6bd609d;
+    border-radius: 40px;
+        font-style: italic;
 }
 nav .user p {
     display: flex;
@@ -70,24 +77,17 @@ nav .user p {
 nav .user p i {
     display: flex;
     align-items: center;
-    margin-right: 5px;
-
+    margin-right: 18px;
+    width: 5%;
 }
+
 nav a {
+    display: flex;
     text-decoration: none;
     color: black;
-    padding: 5px;
-    background: linear-gradient(to right, #000000, #457b9d);
-    background-clip: text;
-    color: transparent;
+    padding: 10px;
     transition: 1s;
-    font-weight: 500;
     font-size: 15px;
-    border-left: 1px solid black;
-    padding: 15px;
-}
-nav a:hover {
-    color: black;
 }
 main {
     display: flex;
@@ -120,7 +120,7 @@ form {
     padding: 20px;
     text-align: center;
     flex-direction: column;
-    background-color: #202020;
+    background-color: #202020e1;
     border-radius: 20px;
     transition: 1s;
 }
@@ -161,6 +161,7 @@ form fieldset input {
     font-size: 12px;
     text-align: center;
     padding: 5px;
+    color: black;
     margin-bottom: 10px;
 }
 form fieldset input:hover {
@@ -173,21 +174,24 @@ form fieldset a {
     transition: 0.7s;
     margin-bottom: 10px;
     width: 70%;
+    border-radius: 8px;
+    border-bottom: 1px solid white; border-top: 1px solid white;
 }
 form fieldset a:hover {
-    background-color: #202222;
+    background-color: rgba(255, 255, 255, 0.212);
+    border-radius: 16px;
+    border-bottom: 1px solid white;
 }
 form fieldset button{
     justify-content: center;
     text-align: center;
-    background-color: white;
     color: black;
     border: none;
     padding: 10px;
     width: 55%;
     transition: 1s;
     border-radius: 8px;
-    background-color: #eeba0b;
+    background-color: #eeba0b;  
     margin: 5px 0 20px 0;
     font-size: 13px;
 }
@@ -204,20 +208,47 @@ form fieldset button:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
-    margin-top: 3rem;
+    transition: all 1s;
     width: 100%;
-    align-items: center;
-    height: 25rem;
+    height: 40rem;
 }
 .container fieldset {
+    width: 80%;
+}
+.container fieldset, .container figure {
+    display: flex;
+    transition: all 1s;
+    flex-direction: column;
+    align-items: center;
     border: 2px solid white;
+}
+.container figure {
+    border: none;
+    border-bottom: 2px solid white;
 }
 .container fieldset p {
     text-align: center;
     font-size: 15px;
     width: 100%;
-    padding: 5px;
+    padding: 8px;
 }
+    /* .container .vertical {
+        display: flex;
+        align-items: end;
+        margin-top: 1rem;
+        height: 300px;
+        transition: all 2s;
+    } */
+/* .container .vertical:active {
+    transition: all 5s;
+    height: 500px;
+    width: 101%;
+} */
+/* .container .vertical:hover {
+    transition: all 5s;
+    height: 460px;
+    width: 101%;
+} */
 .grid-item {
     display: grid;
     justify-items: center;
@@ -234,22 +265,56 @@ form fieldset button:hover {
 .grid-item:nth-child(even):hover {
     background-color: rgba(255, 255, 255, 0.149);
 }
-.grid-item legend {
+.container article {
+    display: grid;
+    width: 70%;
+    justify-items: center;
+    transition: all 1s;
+    margin: auto;
+    text-align: center;
+    font-family: Faculty Glyphic;
+    background-color: rgba(119, 136, 153, 0.286);
+}
+.container article p {
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+}
+.container article:nth-child(even):hover {
+    background-color: rgba(255, 255, 255, 0.149);
+}
+.grid-item legend, article b{
     text-shadow: black 1px 1px 1px; 
     color: #a1cca5;
 }
 .grid-item b {
     text-shadow: black 1px 1px 1px;
 }
-/* .grid-item a {
-    background-color: #0ead6859;
-} */
 .grid-item img {
     width: 200px;
     height: 100px;
     border-radius: 20px;
     object-fit: cover;
     border: 2px solid white;
+}
+.grid-item img:hover {
+    cursor: crosshair;
+    border: 2px solid #2d6a4f;
+    width: 220px;
+    filter: contrast(120%);
+}
+figure img {
+    width: 400px;
+    height: 200px;
+    border-radius: 12px;
+    border: 1px solid white;
+    object-fit: cover;
+}
+figure img:hover {
+    cursor: crosshair;
+    border: 1px solid #0ead69;
+    width: 420px;
+    filter: contrast(150%);
 }
 .grid-item:nth-child(odd) {
     background-color: #86a3309b;
@@ -258,21 +323,28 @@ form fieldset button:hover {
     background-color: rgba(255, 255, 255, 0.149);
     margin-top: 50px;
 }
+.container article:nth-child(odd):hover {
+    background-color: rgba(255, 255, 255, 0.149);
+}
 .grid-item:nth-child(odd) legend {
     color: #415d43;
 }
+
+
+
+
 section {
     display: flex;
-    width: 600px;
-    border: 3px solid #3d5a80   ;
+    width: 800px;
+    border: 3px solid #3d5a80;
     justify-content: center;
     height: 286px;
-    transition: 3s;
+    transition: 2s;
     text-align: center;
     color: white;
 }
 section:hover {
-    width: 820px;
+    width: 920px;
 }
 section img {
     width: 0px;
@@ -290,15 +362,20 @@ section img:hover {
 }
 section pre {
     display: flex;
-    width: 6%;
+    width: 4%;
     margin: 0;
-    background-color: #96ebb584;
+    transition: all 1s;
+    background-color: #74c69d;
+}
+section pre:hover {
+    width: 5.1%;
+    background-color: #40916c;
+}
+section pre:active {
+    background-color: rgba(255, 0, 0, 0.485);
 }
 section pre a {
     /* padding: 1px; */
-    display: inline;
-    vertical-align: bottom;
-    align-items: end;
     text-align: center;
     width: 100%;
 }
@@ -337,4 +414,29 @@ span {
 }
 span i {
     font-size: 1.1rem;
+}
+/* .container2 {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(154,188,95);
+} */
+
+/* Estilos para el mapa */
+#map {
+    width: 100%;
+    height: 600px;
+    background: #f0f0f0;    
+}
+
+#map:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.map-control {
+    background-color: white;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 8px;
 }

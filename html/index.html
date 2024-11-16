@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,33 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+
 </head>
 <body>
 <header>
     <nav>
         <div class="user">
-            <p title="Sesion iniciada con:">
-                <i class="fa-regular fa-user"></i>
-                danielxxomg
-            </p>
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center">
+                    <a href="">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg border-l-2 text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Iniciar sesión</a>
+                </p>
+            {% endif %}
         </div>
+        
         <h1>
             Insectos Polinizadores
         </h1><a href="{{ url_for('index') }}">
@@ -39,15 +55,54 @@
     Insectos Polinizadores
 </h2>
 <main>
-    <h2 class="text-4xl m-10">
-        Villavicencio: Donde la Naturaleza Hace Magia
-    </h2>
-    <p>
-        En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
-        
-    </p>
-    <section class="mb-10 mt-10">
-            <img src="/front/img/Lbee.png" alt="Abeja" title="Abeja"
+    <h2 class="text-4xl m-10">Villavicencio: Donde la Naturaleza Hace Magia</h2>
+    <div class="container">
+        <article>
+            <figure>
+                <img src="/front/img/corredo.png" alt="Abeja">
+                <figcaption>
+                    <b class="text-xl">Porque es importante el cuidado de Nuestros Insectos</b>
+                </figcaption>
+            </figure>
+            <div class="info-text">
+                <p class="border-0 p-5">
+                    En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. <br>
+                    Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. <br>|
+                    A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
+                </p>
+                <p class="bg-slate-700 hover:bg-slate-800 transition duration-300 ease-in-out p-2">
+                    Pagina Corredor
+                    <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="_blank" title="Click para ser redirijido">
+                        <b>Aqui!</b>
+                    </a>
+                </p>
+            </div>
+        </article>
+        <div class="vertical transition duration-300 ease-in-out mt-10">
+            <iframe style="width: 100%; height: 340px;" src="https://www.youtube.com/embed/kUahhOgswyc" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <article>
+            <figure>
+                <img src="/front/img/mariposag.jpg" alt="Mariposa">
+                <figcaption>
+                    <b class="text-xl">Mariposas (Lepidoptera)</b>
+                </figcaption>
+            </figure>
+            <div class="info-text">
+                <p class="border-0 p-5">                    
+                    En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
+                </p>
+                <p class="bg-green-700 p-2">
+                    Informacion extra
+                    <a href=""><b>aqui!</b></a>
+            </div>
+        </article>
+    </div>    
+
+
+
+    <section class="mb-28 mt-28">
+            <img src="/front/img/Lbee.png" alt="Abeja" title="Apidae" id="Abeja"
             ><pre
                 ><a href="">                
 A
@@ -57,7 +112,7 @@ j
 a
                 </a>
                 </pre>
-            <img src="/front/img/Lmariposa.png" alt="Mariposa" title="Mariposa"
+            <img src="/front/img/Lmariposa.png" alt="Mariposa" title="Lepidoptera" id="Mariposa"
                 ><pre
                 ><a href="">
 M
@@ -70,7 +125,7 @@ s
 a
                 </a>
                 </pre>
-            <img src="/front/img/Lfly.png" alt="Mosca" title="Mosca" id="mosca"
+            <img src="/front/img/Lfly.png" alt="Mosca" title="Diptera" id="Mosca"
                 ><pre
                 ><a href="">
 M
@@ -80,7 +135,7 @@ c
 a
                 </a>
                 </pre> 
-            <img src="/front/img/Lescarabajo.png" alt="Escarabajo" title="Escarabajo" id="escarabajo"
+            <img src="/front/img/Lescarabajo.png" alt="Escarabajo" title="Coleoptera" id="Escarabajo"
                 ><pre
                 ><a href="">
 E
@@ -109,7 +164,7 @@ o
             <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
                 Su morfología les permite recolectar y transferir polen de manera efectiva.
             </p>
-            <p class="bg-green-700">
+            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
                 Informacion extra
                 <a href=""><b>aqui!</b></a>
             </p>
@@ -122,7 +177,7 @@ o
                 Las mariposas contribuyen significativamente a la fertilización de muchas plantas. <br>
                 Su probóscide especializada les permite acceder al néctar de flores complejas.
             </p>
-            <p class="bg-green-700">
+            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
                 Informacion extra
                 <a href=""><b>aqui!</b></a>
             </p>
@@ -132,10 +187,10 @@ o
             <img src="/front/img/moscag.jpg" alt="Mosca">
             <b class="text-xl">Moscas (Diptera)</b>
             <p class="border-0">
-                Las moscas son polinizadoras efectivas en muchos ecosistemas. <br>
-                Son atraídas por flores con olores fuertes y colores brillantes.
+                Curioso! L transition duration-300 ease-in-outas moscas son polinizadoras efectivas en muchos ecosistemas. <br>
+                Estas son atraídas por las flores con olores fuertes y colores brillantes.
             </p>
-            <p class="bg-green-700">
+            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
                 Informacion extra
                 <a href=""><b>aqui!</b></a>
             </p>
@@ -148,7 +203,7 @@ o
                 Los escarabajos son polinizadores primarios en ecosistemas antiguos. <br>
                 Su alimentación en flores contribuye a la polinización de diversas plantas.
             </p>
-            <p class="bg-green-700">
+            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
                 Informacion extra
                 <a href=""><b>aqui!</b></a>
             </p>

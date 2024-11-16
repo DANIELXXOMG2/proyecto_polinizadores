@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!--JavaJS Vinculacion-->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
 </head>
 <body>
-    hola
+    <header>
+        <nav>
+            <div class="user">
+                {% if session.get('nombre') %}
+                    <p title="Tu Usuario" class="flex items-center">
+                        <a href="">
+                            <i class="fa-regular fa-user mr-2"></i>
+                            {{ session['nombre'] }}
+                        </a>
+                        <a href="{{ url_for('logout') }}" class=" text-lg border-l-2 text-red-600 hover:text-red-900" title="Cerrar sesión">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a href="{{ url_for('login2') }}">Iniciar sesión</a>
+                    </p>
+                {% endif %}
+            </div>
+            
+            <h1>
+                Insectos Polinizadores
+            </h1><a href="{{ url_for('index') }}">
+                Inicio
+            </a>
+            <a href="{{ url_for('contacto') }}">
+                Contacto
+            </a>
+            <a href="{{ url_for('reviews') }}">
+                Reviews
+            </a>
+            <a href="{{ url_for('sobre') }}">
+                Sobre
+            </a>
+        </nav>
+    </header>
+<main>
+    <h1>HOLA</h1>
+</main>
 </body>
 </html>
