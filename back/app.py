@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 import os
+import pyotp
+import time
+
 from mysql.connector import Error
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -142,33 +145,6 @@ def verificar_usuario(email, password_):
         if conexion.is_connected():
             cursor.close()
             conexion.close()
-
-
-""" 
-def verificar_usuario(email, password_):
-    try:
-        conexion = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='40334277',
-            database='insectos_polinizadores'
-        )
-        if conexion.is_connected():
-            cursor = conexion.cursor()
-            consulta = "SELECT * FROM usuarios WHERE email = %s AND password_ = %s"
-            print(consulta)
-            cursor.execute(consulta, (email, password_))
-            usuario = cursor.fetchone()
-            return usuario is not None
-    except Error as e:
-        print("Error al verificar el usuario:", e)
-    finally:
-        if conexion.is_connected():
-            cursor.close()
-            conexion.close()
-    return False """
-
-
 def registrar_usuario_en_bd(nombre, email, password_):
     try:
         conexion = mysql.connector.connect(
@@ -263,34 +239,6 @@ def login():
     else:
         flash('Correo o contraseña incorrectos')
         return redirect(url_for('login2'))
-
-
-""" @app.route('/login', methods=['GET','POST'])
-def login():
-    email = request.form['email'] 
-    password_ = request.form['password_'] 
-    
-    if verificar_usuario(email, password_):
-        
-        conexion = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='40334277',
-            database='insectos_polinizadores'
-        )
-        cursor = conexion.cursor()
-        cursor.execute("SELECT nombre FROM usuarios WHERE email = %s", (email,))
-        usuario = cursor.fetchone() 
-        nombre = usuario[0] if usuario else None
-        
-        session['email'] = email  
-        session['nombre'] = nombre
-        
-        flash('Inicio de sesión exitoso')
-        return redirect(url_for('index'))  
-    else:
-        flash('Correo o contraseña incorrectos')
-        return redirect(url_for('login2')) """
 
 @app.route('/logout')
 def logout():

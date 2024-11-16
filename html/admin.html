@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrativo</title>    
+    <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/hacker.webp') }}" type="image/x-icon"> <!--Favicon-->
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
@@ -14,39 +15,24 @@
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-6">
-        <h1 class="text-2xl font-bold mb-4">Panel Administrativo</h1>
-        
-        <div class="bg-white shadow-md rounded p-4">
-            <h2 class="text-xl mb-4">Verificar Contraseña</h2>
-            <form action="{{ url_for('verificar_password_admin') }}" method="post" class="space-y-4">
-                <div>
-                    <label class="block mb-2">Email del usuario:</label>
-                    <input type="email" name="email" required 
-                           class="w-full p-2 border rounded">
-                </div>
-                <div>
-                    <label class="block mb-2">Contraseña a verificar:</label>
-                    <input type="password" name="password_to_check" required 
-                           class="w-full p-2 border rounded">
-                </div>
-                <button type="submit" 
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Verificar
-                </button>
-            </form>
+<body class="cursor-help">
+<header>
 
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="mt-4 p-4 {% if 'correcta' in message %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %} rounded">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
+</header>
+
+    <div class="container3">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="/front/img/hackerb.mp4" type="video/mp4">
+        </video>
+        <form action="/admin_login" method="post" class="content">
+            <legend>
+                <h1>Token TOTP</h1>
+            </legend>
+                <input type="password" name="admin_token" id="admin_token">
+                <input type="submit" value="Submit" class="botonsito">
+        </form>
+        
     </div>
+
 </body>
 </html>
