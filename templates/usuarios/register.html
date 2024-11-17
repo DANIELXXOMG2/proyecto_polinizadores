@@ -22,7 +22,7 @@
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 <body>
 <header>
-    <nav>
+    <nav class="menu">
         <div class="user">
             {% if session.get('nombre') %}
                 <p title="Tu Usuario" class="flex items-center">
@@ -30,31 +30,33 @@
                         <i class="fa-regular fa-user mr-2"></i>
                         {{ session['nombre'] }}
                     </a>
-                    <a href="{{ url_for('logout') }}" class=" text-lg border-l-2 text-red-600 hover:text-red-900" title="Cerrar sesión">
+                    <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </a>
                 </p>
             {% else %}
                 <p>
-                    <a href="{{ url_for('login2') }}">Registrate</a>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
                 </p>
             {% endif %}
         </div>
         <h1>
             Insectos Polinizadores
         </h1>
-        <a href="{{ url_for('index') }}">
-            Inicio
-        </a>
-        <a href="{{ url_for('contacto') }}">
-            Contacto
-        </a>
-        <a href="{{ url_for('reviews') }}">
-            Reviews
-        </a>
-        <a href="{{ url_for('sobre') }}">
-            Sobre
-        </a>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="menu-item">
+                Inicio
+            </a></li>
+            <li><a href="{{ url_for('contacto') }}" class="menu-item">
+                Contacto
+            </a></li>
+            <li><a href="{{ url_for('reviews') }}" class="menu-item">
+                Reviews
+            </a></li>
+            <li><a href="{{ url_for('sobre') }}" class="menu-item">
+                Sobre
+            </a></li>
+        </ul>
     </nav>
 </header>
 <main>
@@ -79,7 +81,7 @@
 </main>   
 <hr class="linea">
 <footer>
-    <div class="menu" title="Navegación">
+    <div class="redes" title="Navegación">
         <p>
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}">
@@ -93,7 +95,7 @@
                 </a>
         </p>     
     </div>
-    <div class="menu" title="Para contactar a danielxxomg">
+    <div class="redes" title="Para contactar a danielxxomg">
         <p>
             <b>Contactanos</b>
             <a href="{{ url_for('contacto') }}">
@@ -101,7 +103,7 @@
             </a>
         </p>
     </div>
-    <div class="menu" title="Mis redes sociales">
+    <div class="redes" title="Mis redes sociales">
         <p>
             <b>Redes Sociales</b>
             <span>    

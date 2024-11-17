@@ -21,44 +21,45 @@
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
-</head>
 <body>
-    <header>
-        <nav>
-            <div class="user">
-                {% if session.get('nombre') %}
-                    <p title="Tu Usuario" class="flex items-center">
-                        <a href="">
-                            <i class="fa-regular fa-user mr-2"></i>
-                            {{ session['nombre'] }}
-                        </a>
-                        <a href="{{ url_for('logout') }}" class=" text-lg border-l-2 text-red-600 hover:text-red-900" title="Cerrar sesión">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </a>
-                    </p>
-                {% else %}
-                    <p>
-                        <a href="{{ url_for('login2') }}">Iniciar sesión</a>
-                    </p>
-                {% endif %}
-            </div>
-            
-            <h1>
-                Insectos Polinizadores
-            </h1><a href="{{ url_for('index') }}">
+<header>
+    <nav class="menu">
+        <div class="user">
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center">
+                    <a href="">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                </p>
+            {% endif %}
+        </div>
+        <h1>
+            Insectos Polinizadores
+        </h1>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="menu-item">
                 Inicio
-            </a>
-            <a href="{{ url_for('contacto') }}">
+            </a></li>
+            <li><a href="{{ url_for('contacto') }}" class="menu-item">
                 Contacto
-            </a>
-            <a href="{{ url_for('reviews') }}">
+            </a></li>
+            <li><a href="{{ url_for('reviews') }}" class="menu-item">
                 Reviews
-            </a>
-            <a href="{{ url_for('sobre') }}">
+            </a></li>
+            <li><a href="{{ url_for('sobre') }}" class="menu-item">
                 Sobre
-            </a>
-        </nav>
-    </header>
+            </a></li>
+        </ul>
+    </nav>
+</header>
 <main>
     <h1>HOLA</h1>
 </main>
