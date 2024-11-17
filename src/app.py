@@ -125,11 +125,12 @@ def inicializar_bd():
                 CREATE TABLE IF NOT EXISTS registro_ips (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     usuario_id INT,
+                    nombre VARCHAR(255) NOT NULL,
                     ip_address VARCHAR(45) NOT NULL,
                     fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (usuario_id) REFERENCES Usuarios(id)
                 )
-            """)
+            """)    
             print("Base de datos y tablas creadas correctamente.")
     except Error as e:
         print("Error al inicializar la base de datos:", e)
@@ -186,7 +187,7 @@ def registrar_usuario_en_bd(nombre, email, password_, ip_address):
                 # Obtener el ID del usuario recién registrado
                 usuario_id = cursor.lastrowid
                 # Registrar la IP
-                registrar_ip(usuario_id, ip_address)
+                registrar_ip(usuario_id, nombre, ip_address)
                 return True, "Usuario registrado con éxito"
             else:
                 return False, "No se pudo registrar el usuario"
@@ -199,16 +200,16 @@ def registrar_usuario_en_bd(nombre, email, password_, ip_address):
             cursor.close()
             conexion.close()
 
-def registrar_ip(usuario_id, ip_address):
+def registrar_ip(usuario_id, nombre, ip_address):
     try:
         conexion = mysql.connector.connect(**DB_CONFIG)
         if conexion.is_connected():
             cursor = conexion.cursor()
             consulta = """
-            INSERT INTO registro_ips (usuario_id, ip_address)
-            VALUES (%s, %s)
+            INSERT INTO registro_ips (usuario_id, nombre, ip_address)
+            VALUES (%s, %s, %s)
             """
-            cursor.execute(consulta, (usuario_id, ip_address))
+            cursor.execute(consulta, (usuario_id, nombre, ip_address))
             conexion.commit()
     except Error as e:
         print(f"Error al registrar IP: {str(e)}")
@@ -216,7 +217,6 @@ def registrar_ip(usuario_id, ip_address):
         if 'conexion' in locals() and conexion.is_connected():
             cursor.close()
             conexion.close()
-
 
 @app.route('/')
 def login2():
@@ -288,8 +288,8 @@ def login():
             usuario_id = usuario[0]
             nombre = usuario[1]
             
-            # Registrar IP
-            registrar_ip(usuario_id, ip_address)
+            # Registrar IP con el nombre
+            registrar_ip(usuario_id, nombre, ip_address)
             
             session.permanent = True
             session['email'] = email
