@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Accede a nuestra plataforma informativa sobre insectos polinizadores">
-    <meta name="robots" content="noindex, nofollow">  
+    <meta name="description" content="Conoce el corredor ecológico en Villavicencio y su importancia para los insectos polinizadores por la Uniminuto">
+    <meta name="keywords" content="mapa corredor ecológico, Uniminuto, Villavicencio, conservación, biodiversidad">
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Acceso | Insectos Polinizadores">
-    <meta property="og:description" content="Inicia sesión para explorar el mundo de los insectos polinizadores">
-    <meta property="og:image" content="{{ url_for('static', filename='img/princi.png') }}">
-    <title>Register | Insectos Polinizadores</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Sobre el Corredor Ecológico Uniminuto | Insectos Polinizadores">
+    <meta property="og:description" content="Explora el mapa interactivo del corredor ecológico de Villavicencio">
+    <meta property="og:image" content="{{ url_for('static', filename='img/butterfly.jpg') }}">
+
+        <title>Sobre | Insectos Polinizadores</title>
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}"> 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!--API MAPA Vinculacion-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJH77ncqZk53-C7mlslENjqKceXTQIzoc&libraries=places,drawing" async defer></script>    
+    <script src="{{ url_for('static', filename='js/map-config.js') }}"></script>    <!--Configuracion del mapa-->
+    <script src="{{ url_for('static', filename='js/map-component.js') }}"></script>     <!--Componente del mapa-->
     <!-- FrameWroks -->
     <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 <body>
 <header>
     <nav>
@@ -36,14 +43,14 @@
                 </p>
             {% else %}
                 <p>
-                    <a href="{{ url_for('login2') }}">Registrate</a>
+                    <a href="{{ url_for('login2') }}">Iniciar sesión</a>
                 </p>
             {% endif %}
         </div>
+
         <h1>
             Insectos Polinizadores
-        </h1>
-        <a href="{{ url_for('index') }}">
+        </h1><a href="{{ url_for('index') }}">
             Inicio
         </a>
         <a href="{{ url_for('contacto') }}">
@@ -58,28 +65,32 @@
     </nav>
 </header>
 <main>
-    <form action="/registrar_usuario" method="post" class="formu">
-        <fieldset>
-                <h2>Register</h2>
-                <img src="/front/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
+    <div class="container2 mt-8">
+        <h2 class="text-2xl font-bold my-4 text-center">Corredor Ecológico de Villavicencio</h2>
+        
+        <!-- Componente del mapa -->
+        <div x-data="mapComponent" 
+            x-init="$nextTick(() => initMap())" 
+            class="w-full">
+            
+            <!-- Contenedor del mapa -->
+            <div id="map" class="w-full h-[600px] rounded-lg shadow-lg mb-4"></div>
+            
+            <!-- Controles del mapa -->
+            <div class="flex justify-center gap-4 mt-4">
+                <button 
+                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    x-on:click="centerMap()">
+                    Centrar Mapa
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
 
-                <label for="nombre">Tu Usuario</label><br>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
-
-                <label for="email">Tu Correo</label> <br>
-                    <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>
-                
-                <label for="password_">Contraseña</label> <br>
-                    <input type="password" name="password_" id="password_" minlength="5"  placeholder="Ingresa tu contraseña aqui" required> <br>
-
-                <button id="submit" type="submit">Registrate</button>
-                <a href="{{ url_for('login2') }}">Login</a>
-        </fieldset>        
-    </form>
-</main>   
-<hr class="linea">
+<hr class="linea">    
 <footer>
-    <div class="menu" title="Navegación">
+    <div class="menu" tit   le="Navegación">
         <p>
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}">

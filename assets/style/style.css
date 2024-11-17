@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Faculty+Glyphic&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
 /***? Estilos Generales [Body y Header] 
-
     ** Se usa better comments para una mejor legibilidad del código.
-
 */
 body {
     background: url(https://t1.ea.ltmcdn.com/es/posts/9/8/2/15_animales_polinizadores_caracteristicas_y_ejemplos_24289_orig.jpg);
@@ -44,7 +42,7 @@ header {
 
 /**? Navegacion */
 
-nav {
+header nav {
     transition: 1s;
     background-color: #eeba0b;
     justify-content: space-between;
@@ -52,7 +50,7 @@ nav {
     display: flex;
     border-radius: 10px;
 }
-nav h1 {
+header nav h1 {
     font-size: 100%;
     margin: 0.1% 25%;
     width: 60%;
@@ -61,30 +59,29 @@ nav h1 {
     background-clip: text;
     color: transparent;
 }
-nav .user {
+header nav .user {
     display: flex;
     width: 25%;
     transition: all 0.7s;
     color: black;
     padding: 10px 0 10px 10px;
-}
-nav .user:hover {
-    border: 1px solid white;
-    background-color: #f6bd609d;
-    border-radius: 40px;
     font-style: italic;
 }
-nav .user p {
+header nav .user:hover {
+    border-left: 1px solid white; border-right: 1px solid white;
+    border-radius: 40px;
+}
+header nav .user p {
     display: flex;
     justify-content: space-evenly;
 }
-nav .user p i {
+header nav .user p i {
     display: flex;
     align-items: center;
     margin-right: 18px;
     width: 5%;
 }
-nav a {
+header nav a {
     display: flex;
     text-decoration: none;
     color: black;
@@ -280,66 +277,6 @@ section pre a {
     width: 40%;
     background-color: rgb(154,188,95);
 }
-.container3 {
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.container3 h1 {
-    font-size: 95px;
-    color: #fff;
-    margin-bottom: 50px;
-}
-.content {
-    text-align: center;
-}
-.content .botonsito {
-    margin-left: 10px;
-    font-size: 23px;
-    color: #fff;
-    background-color: black;
-    text-decoration: none;
-    border: 2px solid #fff;
-    padding: 10px 20px;
-    border-radius: 50px;
-    transition: 0.3s;
-}
-.content .botonsito:hover {
-    background-color: #fff;
-    color: #000;
-}
-.content input {
-    background-color: grey;  
-    border: 1px solid white; 
-}
-.background-clip {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: -1;
-}
-
-
-
-@media (min-aspect-radio: 16/9) {
-    .background-clip {
-        width: 100%;
-        height: auto;
-        /* object-fit: cover; */
-    }
-}
-@media (max-aspect-radio: 16/9) {
-    .background-clip {
-        width: auto;
-        height: 100%;
-        /* object-fit: cover; */
-    }
-}
-
 /** Estilos para el mapa */
 #map {
     width: 100%;
