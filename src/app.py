@@ -80,7 +80,7 @@ def admin_login():
             
             if conexion.is_connected():
                 cursor = conexion.cursor(dictionary=True)
-                cursor.execute("SELECT id, nombre, email FROM usuarios")
+                cursor.execute("SELECT id, nombre, email, password_ FROM usuarios")
                 usuarios = cursor.fetchall()
                 return render_template('/usuarios/admin_dashboard.html', usuarios=usuarios)
                 
@@ -245,6 +245,11 @@ def reviews():
 @login_required
 def sobre():
     return render_template('/contenido/sobre.html', api_key=app.config['GOOGLE_MAPS_API_KEY'])
+
+@app.route('/animals')
+@login_required
+def animals():
+    return render_template('/contenido/animals.html')
 
 @app.route('/registrar_usuario', methods=['POST'])
 def registrar_usuario():

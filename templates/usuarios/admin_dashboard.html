@@ -4,33 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Administrativo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/stylem.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Dashboard Administrativo</h1>
+<body class="cursor-help bg-black">
+    <nav class="text-center text-white"> 
+        <a href="{{ url_for('index') }}">Salir Sesion</a>
+    </nav>
+    <div class="container3">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="/assets/img/hackerb.mp4" type="video/mp4">
+        </video>
+        <h1>Dashboard Administrativo</h1>
         
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+        <table>
+            <h2 class="p-4 text-lg font-semibold text-gray-700 text-center bg-gray-200 min-w-96">Registro de Usuarios</h2>
+            <thead class="bg-gray-100">
+                    <tr class="text-center">
+                        <th class="p-4  font-medium text-gray-500">ID</th>
+                        <th class="p-4  font-medium text-gray-500">Nombre</th>
+                        <th class="p-4  font-medium text-gray-500">Email</th>
+                        <th class="p-4 font-medium text-gray-500">Contraseña NoHash</th>
+
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white text-center">
                     {% for usuario in usuarios %}
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ usuario.id }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ usuario.nombre }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ usuario.email }}</td>
+                    <tr class="border-t border-gray-100">
+                        <td class="p-5">{{ usuario.id }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.nombre }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.email }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.password_ }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
+        
 </body>
 </html>
