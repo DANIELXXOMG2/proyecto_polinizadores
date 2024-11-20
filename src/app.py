@@ -231,6 +231,11 @@ def register():
 def index():
     return render_template('/contenido/index.html')
 
+@app.route('/user')
+@login_required
+def user():
+    return render_template('/usuarios/user.html')
+
 @app.route('/contacto')
 @login_required
 def contacto(): 

@@ -9,10 +9,10 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Acceso | Insectos Polinizadores">
     <meta property="og:description" content="Inicia sesión para explorar el mundo de los insectos polinizadores">
-    <meta property="og:image" content="{{ url_for('static', filename='img/princi.png') }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/FAVicon/princi.png') }}">
     <title>Register | Insectos Polinizadores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
     <!-- FrameWroks -->
@@ -20,7 +20,7 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
-<body>
+<body id="register-bg">
 <header>
     <nav class="menu">
         <div class="user">
@@ -36,7 +36,7 @@
                 </p>
             {% else %}
                 <p>
-                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                    <a href="{{ url_for('login2') }}" class="footer-item">Tu Usuario</a>
                 </p>
             {% endif %}
         </div>
@@ -62,9 +62,7 @@
 <main>
     <form action="/registrar_usuario" method="post" class="formu">
         <fieldset>
-                <h2>Register</h2>
-                <img src="/assets/img/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
-
+                <h2>REGISTRO</h2>
                 <label for="nombre">Tu Usuario</label><br>
                     <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
 
@@ -84,13 +82,13 @@
     <div class="redes" title="Navegación">
         <p>
             <b>Navegacion</b> 
-                <a href="{{ url_for('index') }}">
+                <a href="{{ url_for('index') }}" class="footer-item">
                     Inicio
                 </a>
-                <a href="{{ url_for('reviews') }}">
+                <a href="{{ url_for('reviews') }}" class="footer-item" >
                     Reviews
                 </a>
-                <a href="{{ url_for('sobre') }}">
+                <a href="{{ url_for('sobre') }}" class="footer-item" >
                     Sobre
                 </a>
         </p>     
@@ -98,7 +96,8 @@
     <div class="redes" title="Para contactar a danielxxomg">
         <p>
             <b>Contactanos</b>
-            <a href="{{ url_for('contacto') }}">
+            <a href="https://guns.lol/danielxxomg" class="footer-item" target="_blank">
+                <i class="fa-regular fa-id-badge fa-flip text-2xl"></i>
                 Contacto Aqui    
             </a>
         </p>
@@ -106,20 +105,20 @@
     <div class="redes" title="Mis redes sociales">
         <p>
             <b>Redes Sociales</b>
-            <span>    
-                <a href="" target="_blank" title="Discord">
+            <span class="flex just">    
+                <a href="" class="footer-item" target="_blank" title="Discord">
                     <i class="fa-brands fa-discord"></i>
                 </a
-                ><a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores" target="_blank" title="Github">
+                ><a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores" class="footer-item" target="_blank" title="Github">
                     <i class="fa-brands fa-github"></i>
                 </a
-                ><a href="https://www.tiktok.com/@danielxxomg" target="_blank" title="Tiktok">
+                ><a href="https://www.tiktok.com/@danielxxomg" class="footer-item" target="_blank" title="Tiktok">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
             </span>
         </p>
     </div>
-    <p>© 2024 Insectos Polinizadores</p>
+    <p title="Todos los derechos reservados a danielxxomg">© 2024 Insectos Polinizadores</p>
 </footer>
 </body>
 </html>

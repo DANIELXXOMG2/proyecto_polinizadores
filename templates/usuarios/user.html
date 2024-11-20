@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANIELXXOMG | CORREDOR</title>   
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body class="bg-stone-900">
+<header>
+    <nav class="menu bg-gray-700" id="usernav">
+        <div class="user">
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center ">
+                    <a href="{{ url_for('user') }}">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                </p>
+            {% endif %} 
+        </div>
+        <h2 class="bg-none text-2xl text-black">
+            Insectos Polinizadores
+        </h2>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="menu-item  ">
+                Inicio
+            </a></li>
+            <li><a href="{{ url_for('contacto') }}" class="menu-item ">
+                Contacto
+            </a></li>
+            <li><a href="{{ url_for('reviews') }}" class="menu-item ">
+                Reviews
+            </a></li>
+            <li><a href="{{ url_for('sobre') }}" class="menu-item ">
+                Sobre
+            </a></li>
+        </ul>
+    </nav>
+</header>
+<main class="bg-green-900 bg-opacity-50"> 
+    <form action="" method="post" class="flex flex-col bg-white bg-opacity-35 items-center justify-center text-center gap-6 w-4/12 max-w-xl border-2 border-white rounded-md py-8">
+            <h1 class="text-3xl text-black">DANIELXXOMG</h1>
+
+            <img id="profile-pic" class="profile-pic w-32 border-4 border-white bg-white bg-opacity-50 rounded-full p-3"
+            src="/assets/img/FAVicon/hacker.webp" alt="Tu_img_de_perfil" title="Tu img de perfil">
+            <div class="credenciales">
+                <label for="insertimg">Cambia tu foto</label> <br> <br>
+                <input type="file" accept="image/jpeg, image/png, image/jpg" id="insertimg" title="Inserta tu imagen">
+            </div>
+            
+            <div class="credenciales">
+                <label for="nombre">Nombre</label> <br> <br>
+                <input type="text" name="nombre" id="nombre" title="Nombre" required>
+            </div>
+            <div class="credenciales">
+                <label for="email">Email</label> <br> <br>
+                <input type="email" name="email" id="email" title="Correo Electronico" required>
+            </div>
+            <div class="credenciales">
+                <label for="password_">Contraseña</label> <br> <br> 
+                <input type="password" name="password_" id="password_" title="Contraseña" required>
+            </div>
+
+            <button id="submit" type="submit" class="bg-slate-600 font-bold py-2 px-4 rounded hover:p-4 hover:bg-slate-700 ">Cambiar mis datos</button>
+    </form>
+</main>
+<footer>
+    <div class="redes" title="Navegación">
+        <p>
+            <b>Navegacion</b> 
+                <a href="{{ url_for('index') }}" class="footer-item">
+                    Inicio
+                </a>
+                <a href="{{ url_for('reviews') }}" class="footer-item" >
+                    Reviews
+                </a>
+                <a href="{{ url_for('sobre') }}" class="footer-item" >
+                    Sobre
+                </a>
+        </p>     
+    </div>
+    <div class="redes" title="Para contactar a danielxxomg">
+        <p>
+            <b>Contactanos</b>
+            <a href="https://guns.lol/danielxxomg" class="footer-item" target="_blank">
+                <i class="fa-regular fa-id-badge fa-flip text-2xl"></i>
+                Contacto Aqui    
+            </a>
+        </p>
+    </div>
+    <div class="redes" title="Mis redes sociales">
+        <p>
+            <b>Redes Sociales</b>
+            <span class="flex just">    
+                <a href="" class="footer-item" target="_blank" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a
+                ><a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores" class="footer-item" target="_blank" title="Github">
+                    <i class="fa-brands fa-github"></i>
+                </a
+                ><a href="https://www.tiktok.com/@danielxxomg" class="footer-item" target="_blank" title="Tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </span>
+        </p>
+    </div>
+    <p title="Todos los derechos reservados a danielxxomg">© 2024 Insectos Polinizadores</p>
+</footer>
+</body>
+</html>

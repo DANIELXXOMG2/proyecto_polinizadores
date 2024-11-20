@@ -11,11 +11,11 @@
     <meta property="og:url" content="127.0.0.1:5000/">     <!-- Cambiar esto cuando se despliegue -->
     <meta property="og:title" content="Insectos Polinizadores | Corredor Ecológico Villavicencio Uniminuto">
     <meta property="og:description" content="Descubre la importancia de los insectos polinizadores en el corredor ecológico de Villavicencio apoyado por la Universidad Minuto De Dios">
-    <meta property="og:image" content="{{ url_for('static', filename='img/mariposag.jpg') }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/grid-items/mariposag.jpg') }}">
     <title>Menu Principal | Insectos Polinizadores</title>
     <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
     <!-- FrameWroks -->
@@ -23,13 +23,13 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
-<body>
+<body id="index-bg">
 <header>
     <nav class="menu">
         <div class="user">
             {% if session.get('nombre') %}
                 <p title="Tu Usuario" class="flex items-center">
-                    <a href="">
+                    <a href="{{ url_for('user') }}">
                         <i class="fa-regular fa-user mr-2"></i>
                         {{ session['nombre'] }}
                     </a>
@@ -41,7 +41,7 @@
                 <p>
                     <a href="{{ url_for('login2') }}">Tu Usuario</a>
                 </p>
-            {% endif %}
+            {% endif %} 
         </div>
         <h1>
             Insectos Polinizadores
@@ -71,7 +71,7 @@
     <div class="container">
         <article>
             <figure>
-                <img src="/assets/img/corredo.png" alt="Abeja">
+                <img src="/assets/img/randoms/corredo.png" alt="Abeja">
                 <figcaption>
                     <b class="text-xl">Porque es importante el cuidado de Nuestros Insectos</b>
                 </figcaption>
@@ -95,30 +95,29 @@
         </div>
         <article>
             <figure>
-                <img src="/assets/img/mariposag.jpg" alt="Mariposa">
+                <img src="/assets/img/grid-items/mariposag.jpg" alt="Mariposa">
                 <figcaption>
                     <b class="text-xl">Mariposas (Lepidoptera)</b>
                 </figcaption>
             </figure>
             <div class="info-text">
                 <p class="border-0 p-5">                    
-                    En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat. 
+                    En el corazón del corredor ecológico de Villavicencio, los insectos polinizadores desempeñan un papel vital en la salud de nuestros ecosistemas. Estas pequeñas criaturas, como abejas, mariposas y escarabajos, son esenciales para la reproducción de muchas plantas, lo que a su vez sustenta la biodiversidad y la producción de alimentos. A través de este espacio, exploraremos la importancia de estos polinizadores, su impacto en la agricultura local y las acciones que podemos tomar para proteger su hábitat.
                 </p>
                 <p class="info-text-min">
                     Informacion extra
-                    <a href="">
-                        <b class="menu1">aqui!</b>
+                    <a href="#animals" title="Click para ser redirijido" class="menu1">
+                        <b>Aqui!</b>
                     </a>
             </div>
         </article>
     </div>    
 
-
-
-    <section class="mb-28 mt-28">
-            <img src="/assets/img/Lbee.png" alt="Abeja" title="Apidae" id="Abeja"
+    <h2 class="mt-12 mb-6 text-3xl">Los animales son tan hermosos</h2>
+    <section>
+            <img src="/assets/img/section/Lbee.png" alt="Abeja" title="La grandiosa Apidae vuela y hace miel." id="Abeja"
             ><pre
-                ><a href="">                
+                ><a href="" title="¡Clickeame, te espero!">                
 A
 b
 e
@@ -126,9 +125,9 @@ j
 a
                 </a>
                 </pre>
-            <img src="/assets/img/Lmariposa.png" alt="Mariposa" title="Lepidoptera" id="Mariposa"
+            <img src="/assets/img/section/Lmariposa.png" alt="Mariposa" title="Lepidoptera danza entre flores con gracia." id="Mariposa"
                 ><pre
-                ><a href="">
+                ><a href="" title="¡Clickeame, por favor!">
 M
 a
 r
@@ -139,9 +138,9 @@ s
 a
                 </a>
                 </pre>
-            <img src="/assets/img/Lfly.png" alt="Mosca" title="Diptera" id="Mosca"
+            <img src="/assets/img/section/Lfly.png" alt="Mosca" title="Diptera vuela rápido, ¡siempre en movimiento." id="Mosca"
                 ><pre
-                ><a href="">
+                ><a href="" title="¡Clickeame y descubre!">
 M
 o
 s
@@ -149,9 +148,9 @@ c
 a
                 </a>
                 </pre> 
-            <img src="/assets/img/Lescarabajo.png" alt="Escarabajo" title="Coleoptera" id="Escarabajo"
+            <img src="/assets/img/section/Lescarabajo.png" alt="Escarabajo" title="Coleoptera se pasea con su armadura brillante." id="Escarabajo"
                 ><pre
-                ><a href="">
+                ><a href="" title="¡Clickeame, la aventura te llama!">
 E
 s
 c
@@ -164,77 +163,89 @@ j
 o
                 </a>
                 </pre> 
-        </section>
-    <hr class="mt-5 mb-5 w-3/4">
-    <p class="mt-5">        
+    </section>
+<p class="mt-5 text-center bg-white bg-opacity-20 rounded-full" >
+    <a href="/animals">
+        <i class="fa-solid fa-magnifying-glass fa-bounce bg-white bg-opacity-10 rounded-full mr-5 p-2" title="Buscar"></i>
+    </a>
+    <span title="Que esperas? Dale Click">
+        Dale Click a nuestras imagenes para obtener mas informacion sobre estos hermosos animales.
+    </span>
+</p>    
+<hr class="mt-5 mb-5 w-3/4">
+<div class="container" id="animals">
+    <fieldset class="grid-item" title="Nombre cientifico: Apidae">
+        <legend>Abeja</legend>
+        <img src="/assets/img/grid-items/abejag.webp" alt="Abeja">
+        <b class="text-xl">Abejas (Apidae)</b>
+        <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
+            Su morfología les permite recolectar y transferir polen de manera efectiva.
+        </p>
+        <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
+            Informacion extra
+            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+        </p>
+    </fieldset>
+    <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
+        <legend>Mariposa</legend>
+        <img src="/assets/img/grid-items/mariposag.jpg" alt="Mariposa">
+        <b class="text-xl">Mariposas (Lepidoptera)</b>
+        <p class="border-0">
+            Las mariposas contribuyen significativamente a la fertilización de muchas plantas. <br>
+            Su probóscide especializada les permite acceder al néctar de flores complejas.
+        </p>
+        <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
+            Informacion extra
+            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+        </p>
+    </fieldset>
+    <fieldset class="grid-item" title="Nombre cientifico: Diptera">
+        <legend>Mosca</legend>
+        <img src="/assets/img/grid-items/moscag.jpg" alt="Mosca">
+        <b class="text-xl">Moscas (Diptera)</b>
+        <p class="border-0">
+            Las moscas son polinizadoras efectivas en muchos ecosistemas. <br>
+            Estas son atraídas por las flores con olores fuertes y colores brillantes.
+        </p>
+        <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
+            Informacion extra
+            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+        </p>
+    </fieldset>
+    <fieldset class="grid-item" title="Nombre cientifico: Coleoptera">
+        <legend>Escarabajo</legend>
+        <img src="/assets/img/grid-items/escarabajog.jpg" alt="Escarabajo">
+        <b class="text-xl">Escarabajos (Coleoptera)</b>
+        <p class="border-0">
+            Los escarabajos son polinizadores primarios en ecosistemas antiguos. <br>
+            Su alimentación en flores contribuye a la polinización de diversas plantas.
+        </p>
+        <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
+            Informacion extra
+            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+        </p>
+    </fieldset>
+</div>    
+    <p class="">        
+        <i class="fa-solid fa-rotate-right fa-spin bg-white bg-opacity-10 rounded-full mr-5 p-2"></i>
         Únete a nosotros en la celebración de la naturaleza y el fomento de prácticas sostenibles que aseguren un futuro próspero para nuestros polinizadores.    
     </p>
-
-    <div class="container">
-        <fieldset class="grid-item" title="Nombre cientifico: Apidae">
-            <legend>Abeja</legend>
-            <img src="/assets/img/abejag.webp" alt="Abeja">
-            <b class="text-xl">Abejas (Apidae)</b>
-            <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
-                Su morfología les permite recolectar y transferir polen de manera efectiva.
-            </p>
-            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
-                Informacion extra
-                <a href=""><b>aqui!</b></a>
-            </p>
-        </fieldset>
-        <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
-            <legend>Mariposa</legend>
-            <img src="/assets/img/mariposag.jpg" alt="Mariposa">
-            <b class="text-xl">Mariposas (Lepidoptera)</b>
-            <p class="border-0">
-                Las mariposas contribuyen significativamente a la fertilización de muchas plantas. <br>
-                Su probóscide especializada les permite acceder al néctar de flores complejas.
-            </p>
-            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
-                Informacion extra
-                <a href=""><b>aqui!</b></a>
-            </p>
-        </fieldset>
-        <fieldset class="grid-item" title="Nombre cientifico: Diptera">
-            <legend>Mosca</legend>
-            <img src="/assets/img/moscag.jpg" alt="Mosca">
-            <b class="text-xl">Moscas (Diptera)</b>
-            <p class="border-0">
-                Las moscas son polinizadoras efectivas en muchos ecosistemas. <br>
-                Estas son atraídas por las flores con olores fuertes y colores brillantes.
-            </p>
-            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
-                Informacion extra
-                <a href=""><b>aqui!</b></a>
-            </p>
-        </fieldset>
-        <fieldset class="grid-item" title="Nombre cientifico: Coleoptera">
-            <legend>Escarabajo</legend>
-            <img src="/assets/img/escarabajog.jpg" alt="Escarabajo">
-            <b class="text-xl">Escarabajos (Coleoptera)</b>
-            <p class="border-0">
-                Los escarabajos son polinizadores primarios en ecosistemas antiguos. <br>
-                Su alimentación en flores contribuye a la polinización de diversas plantas.
-            </p>
-            <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
-                Informacion extra
-                <a href=""><b>aqui!</b></a>
-            </p>
-        </fieldset>
-    </div>    
-</main>       
+</main>
+<button id="scrollToTop" onclick="scrollToTop()">
+    <i class="fa-solid fa-chevron-up fa-beat"></i>
+    Subir
+</button>
 <footer>
     <div class="redes" title="Navegación">
-        <p class="text-center">
+        <p>
             <b>Navegacion</b> 
                 <a href="{{ url_for('index') }}" class="footer-item">
                     Inicio
                 </a>
-                <a href="{{ url_for('reviews') }}" class="footer-item">
+                <a href="{{ url_for('reviews') }}" class="footer-item" >
                     Reviews
                 </a>
-                <a href="{{ url_for('sobre') }}" class="footer-item">
+                <a href="{{ url_for('sobre') }}" class="footer-item" >
                     Sobre
                 </a>
         </p>     
@@ -242,7 +253,8 @@ o
     <div class="redes" title="Para contactar a danielxxomg">
         <p>
             <b>Contactanos</b>
-            <a href="{{ url_for('contacto') }}" class="footer-item">
+            <a href="https://guns.lol/danielxxomg" class="footer-item" target="_blank">
+                <i class="fa-regular fa-id-badge fa-flip text-2xl"></i>
                 Contacto Aqui    
             </a>
         </p>
@@ -250,7 +262,7 @@ o
     <div class="redes" title="Mis redes sociales">
         <p>
             <b>Redes Sociales</b>
-            <span>    
+            <span class="flex just">    
                 <a href="" class="footer-item" target="_blank" title="Discord">
                     <i class="fa-brands fa-discord"></i>
                 </a
@@ -263,7 +275,7 @@ o
             </span>
         </p>
     </div>
-    <p>© 2024 Insectos Polinizadores</p>
+    <p title="Todos los derechos reservados a danielxxomg">© 2024 Insectos Polinizadores</p>
 </footer>
 </body>
 </html>
