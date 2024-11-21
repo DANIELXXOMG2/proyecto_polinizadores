@@ -21,6 +21,7 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 <body id="login-bg">
 <header>
     <nav class="menu">
@@ -28,7 +29,7 @@
             {% if session.get('nombre') %}
                 <p title="Tu Usuario" class="flex items-center">
                     <a href="/user"
-                    ><i class="fa-regular fa-user"></i>
+                    ><i class="fa-regular fa-user mr-2"></i>
                         {{ session['nombre'] }}
                     </a>
                     <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
@@ -37,7 +38,7 @@
                 </p>
             {% else %}
                 <p>
-                    <a href="{{ url_for('login2') }}" class="footer-item">Inicia Sesion!</a>
+                    <a href="{{ url_for('login2') }}" class="footer-item" title="Que estas esperando">Inicia Sesion!</a>
                 </p>
             {% endif %}
         </div>
@@ -47,9 +48,6 @@
         <ul>
             <li><a href="{{ url_for('index') }}" class="menu-item">
                 Inicio
-            </a></li>
-            <li><a href="{{ url_for('contacto') }}" class="menu-item">
-                Contacto
             </a></li>
             <li><a href="{{ url_for('reviews') }}" class="menu-item">
                 Reviews
@@ -65,7 +63,6 @@
         <fieldset>
                 <h2>LOGIN</h2>
                 <img src="/assets/img/randoms/abejap.webp" alt="Tu primer animal" title="Abeja"> <br>
-
                 <label for="email">Tu Correo</label> <br>
                     <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>
                 

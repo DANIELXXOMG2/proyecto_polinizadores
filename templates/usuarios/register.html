@@ -20,6 +20,7 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 <body id="register-bg">
 <header>
     <nav class="menu">
@@ -36,7 +37,7 @@
                 </p>
             {% else %}
                 <p>
-                    <a href="{{ url_for('login2') }}" class="footer-item">Tu Usuario</a>
+                    <a href="{{ url_for('login2') }}" class="footer-item" title="Que estas esperando">Registrate !</a>
                 </p>
             {% endif %}
         </div>
@@ -46,9 +47,6 @@
         <ul>
             <li><a href="{{ url_for('index') }}" class="menu-item">
                 Inicio
-            </a></li>
-            <li><a href="{{ url_for('contacto') }}" class="menu-item">
-                Contacto
             </a></li>
             <li><a href="{{ url_for('reviews') }}" class="menu-item">
                 Reviews
@@ -64,7 +62,7 @@
         <fieldset>
                 <h2>REGISTRO</h2>
                 <label for="nombre">Tu Usuario</label><br>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" required> <br>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu user aqui" minlength="3" maxlength="10" required> <br>
 
                 <label for="email">Tu Correo</label> <br>
                     <input type="email" name="email" id="email" placeholder="Ingresa tu email aqui" required> <br>

@@ -9,11 +9,11 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Reviews de Insectos Polinizadores | Villavicencio">
     <meta property="og:description" content="Galería y reviews de los principales insectos polinizadores de Villavicencio">
-    <meta property="og:image" content="{{ url_for('static', filename='img/abejag.webp') }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/FAVicon/coment.webp') }}">
     <title>Reviews | Insectos Polinizadores</title>   
     <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/butterfly.jpg') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/coment.webp') }}" type="image/x-icon"> <!--Favicon-->
     <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
     <!-- FrameWroks -->
@@ -21,6 +21,7 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 <body>
 <header>
     <nav class="menu">
@@ -48,9 +49,6 @@
             <li><a href="{{ url_for('index') }}" class="menu-item">
                 Inicio
             </a></li>
-            <li><a href="{{ url_for('contacto') }}" class="menu-item">
-                Contacto
-            </a></li>
             <li><a href="{{ url_for('reviews') }}" class="menu-item">
                 Reviews
             </a></li>
@@ -63,7 +61,6 @@
 <main>
     <div class="container">
         <h2>Animales Polinizadores</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg/320px-Honey_bee_on_flower_with_pollen_collected_on_rear_leg.jpg" alt="Tu primer animal" title="Abeja">
         <p>Abeja</p>
 
     </div>   

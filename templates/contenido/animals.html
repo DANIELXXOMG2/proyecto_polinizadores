@@ -1,17 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Descubre las especies de insectos polinizadores presentes en el corredor ecológico de Villavicencio">
+    <meta name="keywords" content="reviews insectos, polinizadores, abejas, mariposas, escarabajos, moscas">
+    <!-- Open Graph  -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Reviews de Insectos Polinizadores | Villavicencio">
+    <meta property="og:description" content="Galería y reviews de los principales insectos polinizadores de Villavicencio">
+    <meta property="og:image" content="{{ url_for('static', filename='img/FAVicon/lion.png') }}">
+    <title>Animales | Insectos Polinizadores</title>   
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/lion.png') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fontawesome-free-6.6.0-web/css/all.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
-<body>
+<body id="animals-bg">
 <header>
-
+    <nav class="menu">
+        <div class="user">
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center">
+                    <a href="/user">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                </p>
+            {% endif %}
+        </div>
+        <h1>
+            Insectos Polinizadores
+        </h1>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="menu-item">
+                Inicio
+            </a></li>
+            <li><a href="{{ url_for('reviews') }}" class="menu-item">
+                Reviews
+            </a></li>
+            <li><a href="{{ url_for('sobre') }}" class="menu-item">
+                Sobre
+            </a></li>
+        </ul>
+    </nav>
 </header>
 <main>
-    <h1>Aqui iran los animales papu</h1>
+    <div class="container h-96" id="animals">
+        <fieldset class="grid-item" title="Nombre cientifico: Apidae">
+            <legend>Mosca</legend>
+            <img src="/assets/img/grid-items/moscaa.jpg" alt="Abeja">
+            <b class="text-xl">Abejas (Apidae)</b>
+            <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
+                Su morfología les permite recolectar y transferir polen de manera efectiva.
+            </p>
 
+        </fieldset>
+        <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
+            <legend>Escarabajo</legend>
+            <img src="/assets/img/grid-items/escarabajoa.webp" alt="Escarabajo">
+            <b class="text-xl">Escarabajo</b>
+            <p class="border-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, sequi? <br>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maxime.
+            </p>
+        </fieldset>
+    </div>  
+    <div class="container h-96" id="animals">
+        <fieldset class="grid-item" title="Nombre cientifico: Apidae">
+            <legend>Mosca</legend>
+            <img src="/assets/img/grid-items/moscaa.jpg" alt="Abeja">
+            <b class="text-xl">Abejas (Apidae)</b>
+            <p class="border-0">Las abejas son polinizadoras eficientes y esenciales para la agricultura y biodiversidad. <br>
+                Su morfología les permite recolectar y transferir polen de manera efectiva.
+            </p>
+
+        </fieldset>
+        <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
+            <legend>Escarabajo</legend>
+            <img src="/assets/img/grid-items/escarabajoa.webp" alt="Escarabajo">
+            <b class="text-xl">Escarabajo</b>
+            <p class="border-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, sequi? <br>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maxime.
+            </p>
+        </fieldset>
+    </div>  
 </main>  
 
 <footer>

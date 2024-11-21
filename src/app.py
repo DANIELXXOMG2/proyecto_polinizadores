@@ -1,17 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 import os
+import pyotp
 from mysql.connector import Error
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-import pyotp
+from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv('config/.env')
 
+UPLOAD_FOLDER = 'assets/img/usericon'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__, template_folder="../templates/", static_folder="../assets/")
+
+# Agregar al inicio de tu app.py
+if not os.path.exists(os.path.join(app.static_folder, 'img/usericon')):
+    os.makedirs(os.path.join(app.static_folder, 'img/usericon'))
 
 # Configuración básica
 app.config['GOOGLE_MAPS_API_KEY'] = os.getenv('GOOGLE_MAPS_API_KEY')
@@ -117,7 +124,8 @@ def inicializar_bd():
                     email VARCHAR(255) NOT NULL UNIQUE,
                     password_ VARCHAR(255) NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    last_login TIMESTAMP NULL
+                    last_login TIMESTAMP NULL,
+                    imagen_perfil VARCHAR(500) DEFAULT NULL
                 )
             """)
             
@@ -144,20 +152,22 @@ def verificar_usuario(email, password_):
     try:
         conexion = mysql.connector.connect(**DB_CONFIG)
         if conexion.is_connected():
-            cursor = conexion.cursor()
-            consulta = "SELECT password_, nombre FROM usuarios WHERE email = %s"
+            cursor = conexion.cursor(dictionary=True)
+            # Cambiamos la consulta para obtener más información
+            consulta = "SELECT id, nombre, email, password_ FROM usuarios WHERE email = %s"
             cursor.execute(consulta, (email,))
-            resultado = cursor.fetchone()
+            usuario = cursor.fetchone()
             
-            if resultado and check_password_hash(resultado[0], password_):
+            if usuario and check_password_hash(usuario['password_'], password_):
                 # Actualizar último login
                 cursor.execute("UPDATE usuarios SET last_login = NOW() WHERE email = %s", (email,))
                 conexion.commit()
-                return True
-        return False
+                # Retornamos True y los datos del usuario
+                return True, usuario
+            return False, None
     except Error as e:
         print("Error al verificar el usuario:", e)
-        return False
+        return False, None
     finally:
         if 'conexion' in locals() and conexion.is_connected():
             cursor.close()
@@ -231,15 +241,115 @@ def register():
 def index():
     return render_template('/contenido/index.html')
 
-@app.route('/user')
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/user', methods=['GET', 'POST'])
 @login_required
 def user():
-    return render_template('/usuarios/user.html')
-
-@app.route('/contacto')
-@login_required
-def contacto(): 
-    return render_template('/contenido/contacto.html')
+    if request.method == 'POST':
+        try:
+            conexion = mysql.connector.connect(**DB_CONFIG)
+            cursor = conexion.cursor()
+            
+            # Obtener datos actuales del usuario para verificación
+            cursor.execute("SELECT email, password_ FROM usuarios WHERE email = %s", 
+                        (session.get('email'),))
+            usuario_actual = cursor.fetchone()
+            
+            if not usuario_actual:
+                flash('Error: Usuario no encontrado')
+                return redirect(url_for('logout'))
+            
+            # Obtener datos del formulario
+            nuevo_nombre = request.form.get('nombre')
+            nuevo_email = request.form.get('email')
+            nueva_password = request.form.get('password_')
+            
+            # Verificar si el nuevo email ya existe (si se está cambiando)
+            if nuevo_email and nuevo_email != session.get('email'):
+                cursor.execute("SELECT COUNT(*) FROM usuarios WHERE email = %s", (nuevo_email,))
+                if cursor.fetchone()[0] > 0:
+                    flash('El email ya está registrado por otro usuario')
+                    return redirect(url_for('user'))
+            
+            # Construir la consulta de actualización
+            update_query = "UPDATE usuarios SET "
+            update_params = []
+            
+            if nuevo_nombre:
+                update_query += "nombre = %s, "
+                update_params.append(nuevo_nombre)
+            
+            if nuevo_email:
+                update_query += "email = %s, "
+                update_params.append(nuevo_email)
+            
+            if nueva_password:
+                hashed_password = generate_password_hash(nueva_password, method='pbkdf2:sha256')
+                update_query += "password_ = %s, "
+                update_params.append(hashed_password)
+            
+            # Procesar imagen si se proporcionó una nueva
+            if 'imagen_perfil' in request.files:
+                file = request.files['imagen_perfil']
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(f"{session['nombre']}_{file.filename}")
+                    filepath = os.path.join(app.static_folder, 'img/usericon', filename)
+                    file.save(filepath)
+                    update_query += "imagen_perfil = %s, "
+                    update_params.append(filename)
+            
+            if update_params:
+                # Eliminar la última coma y agregar la condición WHERE
+                update_query = update_query.rstrip(', ')
+                update_query += " WHERE email = %s"
+                update_params.append(session.get('email'))
+                
+                # Ejecutar la actualización
+                cursor.execute(update_query, tuple(update_params))
+                conexion.commit()
+                
+                # Actualizar la sesión con los nuevos datos
+                if nuevo_nombre:
+                    session['nombre'] = nuevo_nombre
+                if nuevo_email:
+                    session['email'] = nuevo_email
+                
+                flash('Perfil actualizado correctamente')
+            
+            return redirect(url_for('user'))
+            
+        except Error as e:
+            flash(f'Error al actualizar perfil: {str(e)}')
+            return redirect(url_for('user'))
+        finally:
+            if 'conexion' in locals() and conexion.is_connected():
+                cursor.close()
+                conexion.close()
+    
+    # Para GET request
+    try:
+        conexion = mysql.connector.connect(**DB_CONFIG)
+        cursor = conexion.cursor(dictionary=True)
+        cursor.execute("SELECT nombre, email, imagen_perfil FROM usuarios WHERE email = %s", 
+                    (session.get('email'),))
+        usuario = cursor.fetchone()
+        
+        if not usuario:
+            flash('Error: Usuario no encontrado')
+            return redirect(url_for('logout'))
+        
+        return render_template('/usuarios/user.html', usuario=usuario)
+        
+    except Error as e:
+        flash(f'Error al obtener datos: {str(e)}')
+        return redirect(url_for('index'))
+    finally:
+        if 'conexion' in locals() and conexion.is_connected():
+            cursor.close()
+            conexion.close()
 
 @app.route('/reviews')
 @login_required
@@ -288,26 +398,17 @@ def login():
             flash('Todos los campos son obligatorios')
             return redirect(url_for('login2'))
         
-        if verificar_usuario(email, password_):
-            conexion = mysql.connector.connect(**DB_CONFIG)
-            cursor = conexion.cursor()
+        success, usuario = verificar_usuario(email, password_)
+        if success:
+            # Registrar IP
+            registrar_ip(usuario['id'], usuario['nombre'], ip_address)
             
-            # Obtener información del usuario
-            cursor.execute("SELECT id, nombre FROM usuarios WHERE email = %s", (email,))
-            usuario = cursor.fetchone()
-            usuario_id = usuario[0]
-            nombre = usuario[1]
-            
-            # Registrar IP con el nombre
-            registrar_ip(usuario_id, nombre, ip_address)
-            
+            # Actualizar sesión con los datos más recientes
             session.permanent = True
-            session['email'] = email
-            session['nombre'] = nombre
+            session['email'] = usuario['email']
+            session['nombre'] = usuario['nombre']
+            session['user_id'] = usuario['id']
             session['last_activity'] = datetime.now().isoformat()
-            
-            cursor.close()
-            conexion.close()
             
             flash('Inicio de sesión exitoso')
             return redirect(url_for('index'))

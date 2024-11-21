@@ -11,7 +11,7 @@
     <meta property="og:url" content="127.0.0.1:5000/">     <!-- Cambiar esto cuando se despliegue -->
     <meta property="og:title" content="Insectos Polinizadores | Corredor Ecológico Villavicencio Uniminuto">
     <meta property="og:description" content="Descubre la importancia de los insectos polinizadores en el corredor ecológico de Villavicencio apoyado por la Universidad Minuto De Dios">
-    <meta property="og:image" content="{{ url_for('static', filename='img/grid-items/mariposag.jpg') }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/FAVicon/butterfly.jpg') }}">
     <title>Menu Principal | Insectos Polinizadores</title>
     <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
@@ -23,6 +23,7 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
 <body id="index-bg">
 <header>
     <nav class="menu">
@@ -49,9 +50,6 @@
         <ul>
             <li><a href="{{ url_for('index') }}" class="menu-item">
                 Inicio
-            </a></li>
-            <li><a href="{{ url_for('contacto') }}" class="menu-item">
-                Contacto
             </a></li>
             <li><a href="{{ url_for('reviews') }}" class="menu-item">
                 Reviews
@@ -95,7 +93,7 @@
         </div>
         <article>
             <figure>
-                <img src="/assets/img/grid-items/mariposag.jpg" alt="Mariposa">
+                <img src="/assets/img/grid-items/mariposag.jpg" alt="Mariposa" id="mariposa">
                 <figcaption>
                     <b class="text-xl">Mariposas (Lepidoptera)</b>
                 </figcaption>
@@ -113,11 +111,11 @@
         </article>
     </div>    
 
-    <h2 class="mt-12 mb-6 text-3xl">Los animales son tan hermosos</h2>
+    <h2 class="mt-12 mb-6 text-3xl">Los insectos son tan necesarios</h2>
     <section>
             <img src="/assets/img/section/Lbee.png" alt="Abeja" title="La grandiosa Apidae vuela y hace miel." id="Abeja"
             ><pre
-                ><a href="" title="¡Clickeame, te espero!">                
+                ><a href="/animals" title="¡Clickeame, te espero!">                
 A
 b
 e
@@ -127,7 +125,7 @@ a
                 </pre>
             <img src="/assets/img/section/Lmariposa.png" alt="Mariposa" title="Lepidoptera danza entre flores con gracia." id="Mariposa"
                 ><pre
-                ><a href="" title="¡Clickeame, por favor!">
+                ><a href="/animals" title="¡Clickeame, por favor!">
 M
 a
 r
@@ -140,7 +138,7 @@ a
                 </pre>
             <img src="/assets/img/section/Lfly.png" alt="Mosca" title="Diptera vuela rápido, ¡siempre en movimiento." id="Mosca"
                 ><pre
-                ><a href="" title="¡Clickeame y descubre!">
+                ><a href="/animals" title="¡Clickeame y descubre!">
 M
 o
 s
@@ -150,7 +148,7 @@ a
                 </pre> 
             <img src="/assets/img/section/Lescarabajo.png" alt="Escarabajo" title="Coleoptera se pasea con su armadura brillante." id="Escarabajo"
                 ><pre
-                ><a href="" title="¡Clickeame, la aventura te llama!">
+                ><a href="/animals" title="¡Clickeame, la aventura te llama!">
 E
 s
 c
@@ -183,7 +181,7 @@ o
         </p>
         <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
             Informacion extra
-            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+            <a href="/animals" title="Click Aqui Para Mas información"><b>aqui!</b></a>
         </p>
     </fieldset>
     <fieldset class="grid-item" title="Nombre cientifico: Lepidoptera">
@@ -196,7 +194,7 @@ o
         </p>
         <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
             Informacion extra
-            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+            <a href="/animals" title="Click Aqui Para Mas información"><b>aqui!</b></a>
         </p>
     </fieldset>
     <fieldset class="grid-item" title="Nombre cientifico: Diptera">
@@ -209,7 +207,7 @@ o
         </p>
         <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
             Informacion extra
-            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+            <a href="/animals" title="Click Aqui Para Mas información"><b>aqui!</b></a>
         </p>
     </fieldset>
     <fieldset class="grid-item" title="Nombre cientifico: Coleoptera">
@@ -222,7 +220,7 @@ o
         </p>
         <p class="bg-green-700 hover:bg-green-800 transition duration-300 ease-in-out">
             Informacion extra
-            <a href="" title="Click Aqui Para Mas información"><b>aqui!</b></a>
+            <a href="/animals" title="Click Aqui Para Mas información"><b>aqui!</b></a>
         </p>
     </fieldset>
 </div>    
