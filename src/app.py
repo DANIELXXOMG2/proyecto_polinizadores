@@ -128,7 +128,18 @@ def inicializar_bd():
                     imagen_perfil VARCHAR(500) DEFAULT NULL
                 )
             """)
-            
+
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS comentarios (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    usuario_id INT NOT NULL,
+                    nombre_usuario VARCHAR(255) NOT NULL,
+                    contenido TEXT NOT NULL,
+                    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id)
+                )
+            """)
+        
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS registro_ips (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -351,11 +362,65 @@ def user():
             cursor.close()
             conexion.close()
 
+@app.route('/agregar_comentario', methods=['POST'])
+@login_required
+def agregar_comentario():
+    contenido = request.form.get('contenido')
+    if not contenido:
+        flash('El comentario no puede estar vacío')
+        return redirect(url_for('reviews'))
+    
+    try:
+        conexion = mysql.connector.connect(**DB_CONFIG)
+        if conexion.is_connected():
+            cursor = conexion.cursor()
+            
+            # Insertar el comentario
+            consulta = """
+            INSERT INTO comentarios (usuario_id, nombre_usuario, contenido)
+            VALUES (%s, %s, %s)
+            """
+            valores = (session['user_id'], session['nombre'], contenido)
+            cursor.execute(consulta, valores)
+            conexion.commit()
+            
+            flash('Comentario agregado exitosamente')
+            
+    except Error as e:
+        flash(f'Error al agregar el comentario: {str(e)}')
+    finally:
+        if 'conexion' in locals() and conexion.is_connected():
+            cursor.close()
+            conexion.close()
+    
+    return redirect(url_for('reviews'))
+
 @app.route('/reviews')
 @login_required
 def reviews():
-    return render_template('/contenido/reviews.html')
-
+    try:
+        conexion = mysql.connector.connect(**DB_CONFIG)
+        if conexion.is_connected():
+            cursor = conexion.cursor(dictionary=True)
+            
+            # Obtener todos los comentarios ordenados por fecha
+            cursor.execute("""
+                SELECT nombre_usuario, contenido, fecha_creacion 
+                FROM comentarios 
+                ORDER BY fecha_creacion DESC
+            """)
+            comentarios = cursor.fetchall()
+            
+            return render_template('/contenido/reviews.html', comentarios=comentarios)
+            
+    except Error as e:
+        flash(f'Error al cargar los comentarios: {str(e)}')
+        return render_template('/contenido/reviews.html', comentarios=[])
+    finally:
+        if 'conexion' in locals() and conexion.is_connected():
+            cursor.close()
+            conexion.close()
+            
 @app.route('/sobre')
 @login_required
 def sobre():

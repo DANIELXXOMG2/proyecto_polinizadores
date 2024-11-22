@@ -22,7 +22,7 @@
     <!--JavaJs Personalizado-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
-<body>
+<body id="reviews-bg">
 <header>
     <nav class="menu">
         <div class="user">
@@ -58,12 +58,85 @@
         </ul>
     </nav>
 </header>
+<aside class="interact py-5 border-x-white">
+    <ul>
+        <li>
+            <a href="/user" aria-label="Usuario">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index" aria-label="Inicio">
+                <i class="fa-solid fa-house"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/reviews" aria-label="Comentarios">
+                <i class="fa-solid fa-comment"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/sobre" aria-label="Mapa">
+                <i class="fa-solid fa-map-location"></i>
+            </a>
+        </li>
+    </ul>
+</aside>
 <main>
-    <div class="container">
-        <h2>Animales Polinizadores</h2>
-        <p>Abeja</p>
-
-    </div>   
+<div id="reviewsmain-bg" class="slider-frame">
+    <hr class="linea border-2 ">
+    <h2 class="text-center my-6 text-3xl">GRANJA AGROECOLOGIA UNIMINUTO</h2>
+    <ul>
+        <li><img src="/assets/img/slide/aguas.jpg" alt="Aguas Uniminuto" title="Aguas Uniminuto"></li>
+        <li><img src="/assets/img/slide/Campesinossjpg.jpg" alt="Campesinos en Sede Meta" title="Campesinos en Sede Meta"></li>
+        <li><img src="/assets/img/slide/dibujos.jpg" alt="Dibujos Granja Uniminuto" title="Dibujos Granja Uniminuto"></li>
+        <li><img src="/assets/img/slide/escas.png" alt="Descubrimiento Escarabajo Uniminuto" title="Descubrimiento Escarabajo Uniminuto"></li>
+        <li><img src="/assets/img/slide/expos1.jpg" alt="Exposicion en Uniminuto" title="Exposicion en Uniminuto"></li>
+        <li><img src="/assets/img/slide/plantitas.jpg" alt="Plantitas en sede Granja Uniminuto" title="Plantitas en sede Granja Uniminuto"></li>
+        <li><img src="/assets/img/slide/unis.jpg" alt="Uniminuto Sede Meta" title="Uniminuto Sede Meta"></li>
+        <li><img src="/assets/img/slide/visitas.jpg" alt="Exponente visita Granja Uniminuto" title="Exponente visita Granja Uniminuto"></li>
+    </ul>
+</div>
+<h1 class="text-4xl mt-20">Apartado De Avistamientos</h1>
+<hr class="linea border-4 mb-10">
+<div class="container bg-black bg-opacity-25 border-2 place-items-center border-white rounded-2xl w-full" style="z-index: 1; height: 40vh;">
+    <article class=" articlereview bg-black bg-opacity-25 border-2 border-white w-7/12 rounded-xl">  
+        <form class="group w-10/12 py-2 align-middle" action="{{ url_for('agregar_comentario') }}" method="POST">
+            <legend class="text-start text-xl p-2 rounded-full bg-black bg-opacity-20">
+                <li class="ml-2">
+                    Caja de Comentarios
+                </li>
+            </legend> <br>
+            <textarea class="text-justify rounded-2xl px-5 text-black transition duration-1000 ease-in-out group-hover:bg-black group-hover:text-white" 
+            name="contenido" 
+            id="contenido"
+            required
+            maxlength="500"
+            placeholder="Tu comentario aqui"></textarea>        
+            <button class="w-full text-end py-5" type="submit" title="Enviar tu comentario">
+                <span class="p-2 text-emerald-500 bg-emerald-100 bg-opacity-10 transition duration-100 ease-in-out hover:bg-emerald-200  group-hover:bg-black">
+                    <b>Envia</b> 
+                    tu comentario!
+                </span>
+            </button>
+        </form>
+    </article>
+    <div class="comentarios-container w-full mt-8">
+        {% for comentario in comentarios %}
+        <article class="comentario bg-black bg-opacity-40 border border-white rounded-lg px-6  py-4 mb-4 w-7/12 mx-auto">
+            <div class="flex items-center mb-2">
+                <span class="text-emerald-400 font-bold">
+                    <a href="{{ url_for('user') }}">{{ comentario.nombre_usuario }}</a>
+                </span>
+                <span class="text-gray-400 text-sm ml-2">
+                    {{ comentario.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}
+                </span>
+            </div>
+            <p class="text-white w-full">{{ comentario.contenido }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</div>    
 </main>
 <hr class="linea">    
 <footer>

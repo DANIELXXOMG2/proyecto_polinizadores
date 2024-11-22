@@ -6,6 +6,15 @@ if (verticalDiv) {
     });
 }
 
+document.getElementById('paste-icon').addEventListener('click', async () => {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('admin_token').value = text;
+    } catch (err) {
+        console.error('Error al acceder al portapapeles: ', err);
+    }
+}); 
+
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('insertimg');
     const profilePic = document.getElementById('profile-pic');
@@ -29,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 
 /* 
     /**Scroll Boton
