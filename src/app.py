@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv('config/.env')
 
 UPLOAD_FOLDER = 'assets/img/usericon'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'gif'}
 
 app = Flask(__name__, template_folder="../templates/", static_folder="../assets/")
 
@@ -498,4 +498,4 @@ def internal_server_error(e):
 
 if __name__ == "__main__":
     inicializar_bd()
-    app.run(debug=True)
+    app.run(debug=True) 
