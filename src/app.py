@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import mysql.connector
 import os
 import pyotp
+import time
 from mysql.connector import Error
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -10,29 +11,28 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv('config/.env')
-
-UPLOAD_FOLDER = 'assets/img/usericon'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'gif'}
-
-app = Flask(__name__, template_folder="../templates/", static_folder="../assets/")
-
-# Agregar al inicio de tu app.py
-if not os.path.exists(os.path.join(app.static_folder, 'img/usericon')):
-    os.makedirs(os.path.join(app.static_folder, 'img/usericon'))
-
-# Configuración básica
-app.config['GOOGLE_MAPS_API_KEY'] = os.getenv('GOOGLE_MAPS_API_KEY')
-app.secret_key = '125436987'
-TOTP_SECRET = os.getenv('TOTP_SECRET')
-
-# Configuración de la base de datos
 DB_CONFIG = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PASSWORD'),
     'database': os.getenv('DB_NAME')
 }
+print("DB_CONFIG:", DB_CONFIG)
 
+UPLOAD_FOLDER = os.path.join(app.root_path, 'usericons')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'gif'}
+
+app = Flask(__name__, template_folder="../templates/", static_folder="../assets/")
+
+# Agregar al inicio de tu app.py
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# Configuración básica
+app.config['GOOGLE_MAPS_API_KEY'] = os.getenv('GOOGLE_MAPS_API_KEY')
+app.secret_key = '125436987'
+TOTP_SECRET = os.getenv('TOTP_SECRET')
+# Configuración de la base de datos
 def check_session_timeout():
     if 'last_activity' in session:
         inactive_time = datetime.now() - datetime.fromisoformat(session['last_activity'])
@@ -87,7 +87,7 @@ def admin_login():
             
             if conexion.is_connected():
                 cursor = conexion.cursor(dictionary=True)
-                cursor.execute("SELECT id, nombre, email, password_ FROM usuarios")
+                cursor.execute("SELECT id, nombre, email, password_ FROM Usuarios")
                 usuarios = cursor.fetchall()
                 return render_template('/usuarios/admin_dashboard.html', usuarios=usuarios)
                 
@@ -165,13 +165,13 @@ def verificar_usuario(email, password_):
         if conexion.is_connected():
             cursor = conexion.cursor(dictionary=True)
             # Cambiamos la consulta para obtener más información
-            consulta = "SELECT id, nombre, email, password_ FROM usuarios WHERE email = %s"
+            consulta = "SELECT id, nombre, email, password_ FROM Usuarios WHERE email = %s"
             cursor.execute(consulta, (email,))
             usuario = cursor.fetchone()
             
             if usuario and check_password_hash(usuario['password_'], password_):
                 # Actualizar último login
-                cursor.execute("UPDATE usuarios SET last_login = NOW() WHERE email = %s", (email,))
+                cursor.execute("UPDATE Usuarios SET last_login = NOW() WHERE email = %s", (email,))
                 conexion.commit()
                 # Retornamos True y los datos del usuario
                 return True, usuario
@@ -190,14 +190,14 @@ def registrar_usuario_en_bd(nombre, email, password_, ip_address):
         if conexion.is_connected():
             cursor = conexion.cursor()
             
-            cursor.execute("SELECT id FROM usuarios WHERE email = %s", (email,))
+            cursor.execute("SELECT id FROM Usuarios WHERE email = %s", (email,))
             if cursor.fetchone():
                 return False, "El email ya está registrado"
             
             hashed_password = generate_password_hash(password_, method='pbkdf2:sha256')
             
             consulta = """
-            INSERT INTO usuarios (nombre, email, password_)
+            INSERT INTO Usuarios (nombre, email, password_)
             VALUES (%s, %s, %s)
             """
             valores = (nombre, email, hashed_password)
@@ -265,7 +265,7 @@ def user():
             cursor = conexion.cursor()
             
             # Obtener datos actuales del usuario para verificación
-            cursor.execute("SELECT email, password_ FROM usuarios WHERE email = %s", 
+            cursor.execute("SELECT email, password_ FROM Usuarios WHERE email = %s", 
                         (session.get('email'),))
             usuario_actual = cursor.fetchone()
             
@@ -280,13 +280,13 @@ def user():
             
             # Verificar si el nuevo email ya existe (si se está cambiando)
             if nuevo_email and nuevo_email != session.get('email'):
-                cursor.execute("SELECT COUNT(*) FROM usuarios WHERE email = %s", (nuevo_email,))
+                cursor.execute("SELECT COUNT(*) FROM Usuarios WHERE email = %s", (nuevo_email,))
                 if cursor.fetchone()[0] > 0:
                     flash('El email ya está registrado por otro usuario')
                     return redirect(url_for('user'))
             
             # Construir la consulta de actualización
-            update_query = "UPDATE usuarios SET "
+            update_query = "UPDATE Usuarios SET "
             update_params = []
             
             if nuevo_nombre:
@@ -307,7 +307,7 @@ def user():
                 file = request.files['imagen_perfil']
                 if file and allowed_file(file.filename):
                     filename = secure_filename(f"{session['nombre']}_{file.filename}")
-                    filepath = os.path.join(app.static_folder, 'img/usericon', filename)
+                    filepath = os.path.join(UPLOAD_FOLDER, filename)
                     file.save(filepath)
                     update_query += "imagen_perfil = %s, "
                     update_params.append(filename)
@@ -344,7 +344,7 @@ def user():
     try:
         conexion = mysql.connector.connect(**DB_CONFIG)
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT nombre, email, imagen_perfil FROM usuarios WHERE email = %s", 
+        cursor.execute("SELECT nombre, email, imagen_perfil FROM Usuarios WHERE email = %s", 
                     (session.get('email'),))
         usuario = cursor.fetchone()
         
@@ -496,6 +496,30 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template('/errores/500.html'), 500
 
+
+# ... resto de las importaciones y configuraciones
+
+def wait_for_db(timeout=60):
+    """Espera a que la base de datos esté lista, intentando conectarse cada 2 segundos."""
+    print("Esperando a que la base de datos esté lista...")
+    start_time = time.time()
+    while True:
+        try:
+            conn = mysql.connector.connect(**DB_CONFIG)
+            if conn.is_connected():
+                conn.close()
+                print("La base de datos está lista.")
+                break
+        except Error as e:
+            print("Base de datos no disponible aún. Error:", e)
+        if time.time() - start_time > timeout:
+            print("Tiempo de espera excedido. La base de datos no se conectó.")
+            break
+        time.sleep(2)
+
 if __name__ == "__main__":
-    inicializar_bd()
-    app.run(debug=True) 
+    wait_for_db()       # Espera a que la BD responda
+    inicializar_bd()    # Inicializa la BD y sus tablas
+    app.run(host="0.0.0.0", debug=True)
+
+app = Flask(__name__, static_folder="/assets", template_folder="../templates")

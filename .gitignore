@@ -1,5 +1,30 @@
-config/.env
 __pycache__/
 *.pyc
+# Ignorar archivos y carpetas generados por Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignorar entornos virtuales
 venv/
+env/
+
+# Ignorar dependencias de Node.js
 node_modules/
+assets/fontawesome/
+
+# Ignorar archivos temporales y de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Ignorar archivos y directorios de sistema
+.DS_Store
+
+# Ignorar configuraciones de IDE
+.vscode/
+.idea/
+
+# Ignorar directorios generados por Docker (datos persistentes)
+db_data/
