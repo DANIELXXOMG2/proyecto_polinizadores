@@ -14,6 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
+from flask import send_from_directory
 
 load_dotenv('config/.env')
 
@@ -93,7 +94,7 @@ def admin_login():
             
             if conexion.is_connected():
                 cursor = conexion.cursor(dictionary=True)
-                cursor.execute("SELECT id, nombre, email, password_ FROM usuarios")
+                cursor.execute("SELECT id, nombre, email, password_ FROM Usuarios")
                 usuarios = cursor.fetchall()
                 return render_template('/usuarios/admin_dashboard.html', usuarios=usuarios)
                 
@@ -169,13 +170,13 @@ def verificar_usuario(email, password_):
         if conexion.is_connected():
             cursor = conexion.cursor(dictionary=True)
             # Cambiamos la consulta para obtener más información
-            consulta = "SELECT id, nombre, email, password_ FROM usuarios WHERE email = %s"
+            consulta = "SELECT id, nombre, email, password_ FROM Usuarios WHERE email = %s"
             cursor.execute(consulta, (email,))
             usuario = cursor.fetchone()
             
             if usuario and check_password_hash(usuario['password_'], password_):
                 # Actualizar último login
-                cursor.execute("UPDATE usuarios SET last_login = NOW() WHERE email = %s", (email,))
+                cursor.execute("UPDATE Usuarios SET last_login = NOW() WHERE email = %s", (email,))
                 conexion.commit()
                 # Retornamos True y los datos del usuario
                 return True, usuario
@@ -193,14 +194,14 @@ def registrar_usuario_en_bd(nombre, email, password_, ip_address):
         if conexion.is_connected():
             cursor = conexion.cursor()
             
-            cursor.execute("SELECT id FROM usuarios WHERE email = %s", (email,))
+            cursor.execute("SELECT id FROM Usuarios WHERE email = %s", (email,))
             if cursor.fetchone():
                 return False, "El email ya está registrado"
             
             hashed_password = generate_password_hash(password_, method='pbkdf2:sha256')
             
             consulta = """
-            INSERT INTO usuarios (nombre, email, password_)
+            INSERT INTO Usuarios (nombre, email, password_)
             VALUES (%s, %s, %s)
             """
             valores = (nombre, email, hashed_password)
@@ -255,6 +256,10 @@ def register():
 def index():
     return render_template('/contenido/index.html')
 
+@app.route('/usericons/<filename>')
+def usericons_static(filename):
+    return send_from_directory(os.path.join(app.root_path, '../usericons'), filename)
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -268,7 +273,7 @@ def user():
             cursor = conexion.cursor()
             
             # Obtener datos actuales del usuario para verificación
-            cursor.execute("SELECT email, password_ FROM usuarios WHERE email = %s", 
+            cursor.execute("SELECT email, password_ FROM Usuarios WHERE email = %s", 
                         (session.get('email'),))
             usuario_actual = cursor.fetchone()
             
@@ -283,13 +288,13 @@ def user():
             
             # Verificar si el nuevo email ya existe (si se está cambiando)
             if nuevo_email and nuevo_email != session.get('email'):
-                cursor.execute("SELECT COUNT(*) FROM usuarios WHERE email = %s", (nuevo_email,))
+                cursor.execute("SELECT COUNT(*) FROM Usuarios WHERE email = %s", (nuevo_email,))
                 if cursor.fetchone()[0] > 0:
                     flash('El email ya está registrado por otro usuario')
                     return redirect(url_for('user'))
             
             # Construir la consulta de actualización
-            update_query = "UPDATE usuarios SET "
+            update_query = "UPDATE Usuarios SET "
             update_params = []
             
             if nuevo_nombre:
@@ -347,7 +352,7 @@ def user():
     try:
         conexion = mysql.connector.connect(**DB_CONFIG)
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT nombre, email, imagen_perfil FROM usuarios WHERE email = %s", 
+        cursor.execute("SELECT nombre, email, imagen_perfil FROM Usuarios WHERE email = %s", 
                     (session.get('email'),))
         usuario = cursor.fetchone()
         

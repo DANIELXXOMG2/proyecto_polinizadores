@@ -8,10 +8,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./src:/usr/src/app/src:ro
-      - ./assets:/usr/srapp/assets
-      - ./templates:/appc//templates:ro
-      - usericons:/usr/src/app/usericons
+      - ./src:/usr/src/app/src:ro # Carpeta Local del Python Flask
+      - ./assets:/usr/src/app/assets # Carpeta Local de imagenes js css etc
+      - ./templates:/usr/src/app/templates # Carpeta Local de templates html
+      - usericons:/usr/src/app/usericons # Carpeta Local de imagenes de usuario
+      - ./usericons:/usr/src/app/usericons # Bind mount de imagenes de usuario
     depends_on:
       db:
         condition: service_healthy
