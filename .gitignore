@@ -12,6 +12,7 @@ env/
 # Ignorar dependencias de Node.js
 node_modules/
 assets/fontawesome/
+usericons/
 
 # Ignorar archivos temporales y de logs
 npm-debug.log*

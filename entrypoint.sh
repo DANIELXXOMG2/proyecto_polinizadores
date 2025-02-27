@@ -13,6 +13,4 @@ if [ ! -d "$TARGET_DIR" ]; then
   # Renombrar la carpeta descargada al nombre deseado
   mv /usr/src/app/assets/fontawesome-free-6.7.2-web "$TARGET_DIR"
 fi
-
-# Ejecuta el comando pasado (por ejemplo, iniciar la aplicación)
 exec "$@"

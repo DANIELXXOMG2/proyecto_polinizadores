@@ -6,33 +6,47 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - ./config/.env
+      - .env
     volumes:
-      - ./src:/app/src:ro
-      - ./assets:/usr/src/app/assets:ro
+      - ./src:/usr/src/app/src:ro
+      - ./assets:/usr/srapp/assets
+      - ./templates:/appc//templates:ro
       - usericons:/usr/src/app/usericons
     depends_on:
       db:
         condition: service_healthy
-
   db:
-    image: mysql:5.7
+    image: mariadb:10.4
     restart: always
+    env_file:
+      - .env
     environment:
-      MYSQL_DATABASE: insectos_polinizadores
-      MYSQL_USER: danielxxomg
-      MYSQL_PASSWORD: 40334277
-      MYSQL_ROOT_PASSWORD: 40334277
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${DB_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}    
+    depends_on:
+      db:
+        condition: service_healthy
 volumes:
   db_data:
   usericons:

@@ -6,7 +6,7 @@
     <title>{{ session.get('nombre') }} | Insectos Polinizadores</title>
     <!-- Links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/usericon/usericondefault.png') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/usericon.png') }}" type="image/x-icon"> <!--Favicon-->
     <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">  <!--Font Awesome-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
     <!-- FrameWroks -->
@@ -57,7 +57,7 @@
 
         <div class="relative">
             <img id="profile-pic" class="profile-pic w-32 h-32 border-4 border-white bg-white bg-opacity-50 rounded-full p-3 object-cover" 
-                src="{{ url_for('static', filename='img/usericon/' + (usuario.imagen_perfil or 'usericondefault.png')) }}" 
+                src="{{ url_for('static', filename='img/usericons/' + (usuario.imagen_perfil or 'usericon.png')) }}" 
                 alt="Tu_img_de_perfil" title="Tu img de perfil">
             <label for="insertimg" class="absolute bottom-0 right-0 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 cursor-pointer">
                 <i class="fa-solid fa-camera"></i>
