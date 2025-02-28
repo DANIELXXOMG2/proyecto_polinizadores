@@ -29,3 +29,6 @@ yarn-error.log*
 
 # Ignorar directorios generados por Docker (datos persistentes)
 db_data/
+
+.env
+app/pgadmin/

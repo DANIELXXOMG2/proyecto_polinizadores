@@ -2,52 +2,59 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: /docker/Dockerfile
+    restart: always
     ports:
       - "5000:5000"
     env_file:
       - .env
-    volumes:
-      - ./src:/usr/src/app/src:ro # Carpeta Local del Python Flask
-      - ./assets:/usr/src/app/assets # Carpeta Local de imagenes js css etc
-      - ./templates:/usr/src/app/templates # Carpeta Local de templates html
-      - usericons:/usr/src/app/usericons # Carpeta Local de imagenes de usuario
-      - ./usericons:/usr/src/app/usericons # Bind mount de imagenes de usuario
+    volumes: 
+      - ./app/src:/usr/src/app/src:ro
+      - ./app/assets:/usr/src/app/assets
+      - ./app/templates:/usr/src/app/templates
+      - usericons:/usr/src/app/usericons
+      - ./.certs:/usr/src/app/.certs
     depends_on:
       db:
         condition: service_healthy
+        
   db:
-    image: mariadb:10.4
+    image: postgres:13
     restart: always
     env_file:
       - .env
     environment:
-      MARIADB_DATABASE: ${DB_NAME}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD: ${DB_PASSWORD}
-      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-    ports:
-      - "3306:3306"
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${DB_ROOT_PASSWORD}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+
+  pgadmin:
+    image: dpage/pgadmin4
     restart: always
+    ports:
+      - "5050:80"
     env_file:
       - .env
-    ports:
-      - 8080:80
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}    
+      PGADMIN_DEFAULT_EMAIL: ${DB_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+    - ./app/pgadmin:/var/lib/pgadmin
+  
 volumes:
   db_data:
   usericons:
+
+networks:
+  default:
+    driver: bridge
