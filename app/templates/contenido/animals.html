@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre las especies de insectos polinizadores presentes en el corredor ecológico de Villavicencio">
+    <meta name="keywords" content="reviews insectos, polinizadores, abejas, mariposas, escarabajos, moscas">
+    <!-- Open Graph  -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Reviews de Insectos Polinizadores | Villavicencio">
+    <meta property="og:description" content="Galería y reviews de los principales insectos polinizadores de Villavicencio">
+    <meta property="og:image" content="{{ url_for('static', filename='img/FAVicon/lion.png') }}">
+    <title>Animales | Insectos Polinizadores</title>   
+    <!-- Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/lion.png') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">  <!--Font Awesome-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body id="animals-bg">
+<header>
+    <nav class="menu">
+        <div class="user">
+            {% if session.get('nombre') %}
+                <p title="Tu Usuario" class="flex items-center">
+                    <a href="/user">
+                        <i class="fa-regular fa-user mr-2"></i>
+                        {{ session['nombre'] }}
+                    </a>
+                    <a href="{{ url_for('logout') }}" class=" text-lg text-red-600 hover:text-red-900" title="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login2') }}">Tu Usuario</a>
+                </p>
+            {% endif %}
+        </div>
+        <h1>
+            Insectos Polinizadores
+        </h1>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="menu-item">
+                Inicio
+            </a></li>
+            <li><a href="{{ url_for('reviews') }}" class="menu-item">
+                Reviews
+            </a></li>
+            <li><a href="{{ url_for('sobre') }}" class="menu-item">
+                Sobre
+            </a></li>
+        </ul>
+    </nav>
+</header>
+<aside class="interact py-5 border-x-white">
+    <ul>
+        <li>
+            <a href="/user" aria-label="Usuario">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index" aria-label="Inicio">
+                <i class="fa-solid fa-house"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/reviews" aria-label="Comentarios">
+                <i class="fa-solid fa-comment"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/sobre" aria-label="Mapa">
+                <i class="fa-solid fa-map-location"></i>
+            </a>
+        </li>
+    </ul>
+</aside>
+<main class="flex flex-row">
+    <div class="cont1">
+        <div class="cont2">
+        <h2 class="text-2xl ml-5">
+            <i class="fa-solid fa-kiwi-bird fa-shake text-end w-6/12"></i> <br>
+            Indice Animales
+        </h2>
+            <a href="#abejas" class="flex items-center">
+                <i class="fa-brands fa-forumbee fa-spin-pulse"></i>
+                Abejas
+            </a>
+            <a href="#mariposas" class="flex items-center">
+                <i class="fa-solid fa-feather-pointed fa-fade"></i>
+                Mariposas
+            </a>
+            <a href="#escarabajos" class="flex items-center">
+                <i class="fa-solid fa-bugs fa-beat"></i>
+                Escarabajos
+            </a>
+            <a href="#moscas" class="flex items-center">
+                <i class="fa-solid fa-mosquito fa-bounce"></i>
+                Moscas
+            </a>
+        </div>
+        <div class="slider-animals">
+            <hr class="linea border-2 w-full">
+            <h2 class="text-center my-6 text-3xl">Los insectos de nuestra Granja</h2>
+            <ul>
+                <li><img src="/assets/img/slide-animals/abejasl.jpg" alt="Abejita Uniminuto" title="Abejita Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/escasl.jpg" alt="Escarabajo rojo Uniminuto" title="Escarabajo rojo Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/mariposasl.webp" alt="Mariposa roja Uniminuto" title="Mariposa roja Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/moscasl.jpg" alt="Mosca Blanca Uniminuto" title="Mosca Blanca Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/abejasl2.jpg" alt="Abeja Blanca Uniminuto" title="Abeja Blanca Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/escasl2.jpg" alt="Escarabajo Uniminuto" title="Escarabajo Uniminuto"></li>
+                <li><img src="/assets/img/slide-animals/mariposasl2.jpg" alt="Hermosa Mariposa" title="Hermosa Mariposa"></li>
+                <li><img src="/assets/img/slide-animals/mariposasl3.jpg" alt="Mariposa Anaranjada" title="Mariposa Anaranjada"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="cont3">
+        <h2 id="insectosh2" class="text-3xl">
+            <b>
+                Insectos Polinizadores  
+            </b>
+        </h2>
+        <p class="border-none w-6/12">
+            Fundamentales en el funcionamiento de los ecosistemas.
+        </p>
+            <div class="redes">
+                Nuestras Redes 
+                <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="blank">
+                    <i class="fa-brands fa-google-scholar"></i>
+                </a>
+                <a href="https://www.tiktok.com/@danielxxomg" target="blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores.git" target="blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        <hr class="linea mb-2 w-full">
+        <div class="cont4">
+            <div class="animal" id="abejas">
+                <h2 class="text-2xl mb-2">
+                    ABEJAS
+                </h2>
+                <div class="subcont flex justify-between group">
+                    <p class="bg-white bg-opacity-20 border-none rounded-full group-hover:text-yellow-100 transition duration-1000 ease-in-out">
+                        Apis mellifera (abeja europea)
+                    </p>
+                    <p class="bg-white bg-opacity-20 border-none rounded-full group-hover:text-yellow-100 transition duration-1000 ease-in-out">
+                        Melipona spp. (abejas sin aguijón)
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/info-animals/info-abeja.webp') }}" class="w-48 mx-auto my-2 rounded-full" alt="Abeja">
+                <p class="w-8/12 border-none">
+                    Las abejas son insectos voladores que se alimentan de polen y néctar. Son fundamentales para la polinización de las plantas y la producción de miel.
+                </p>
+                <b>Porque debemos cuidarlas</b>
+            </div>
+            <hr class="linea w-full">
+            <div class="animal" id="mariposas">
+                <h3 class="text-3xl mb-2">
+                    Mariposas
+                </h3>
+                <div class="subcont flex justify-end">
+                    <p class="bg-white bg-opacity-20 text-black border-none rounded-full hover:text-white transition duration-1000 ease-in-out">
+                        Heliconius spp. (mariposas helicónidas)
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/info-animals/info-butterfly.jpg') }}" class="w-48 mx-auto my-2 rounded-full" alt="Mariposa">
+                <p class="w-8/12 border-none">
+                    Las mariposas son insectos voladores que se alimentan de néctar. Son fundamentales para la polinización de las plantas y la producción de miel.
+                </p>
+            </div>
+            <hr class="linea w-full">
+            <div class="animal" id="escarabajos">
+                <h3 class="text-3xl mb-2">
+                    Escarabajos
+                </h3>
+                <div class="subcont flex ">
+                    <p class="bg-white bg-opacity-20 text-white border-none rounded-full hover:text-green-400 transition duration-1000 ease-in-out">
+                        Euphoria sepulcralis (escarabajo de flores)
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/info-animals/info-escarabajo.jpeg') }}" class="w-48 mx-auto my-2 rounded-full" alt="Escarabajo">
+                <p class="w-8/12 border-none">
+                    Los escarabajos son insectos voladores que se alimentan de polen y néctar. Son fundamentales para la polinización de las plantas y la producción de miel.
+                </p>
+            </div>
+            <hr class="linea w-full">
+            <div class="animal" id="moscas">
+                <h3 class="text-3xl mb-2">
+                    Moscas
+                </h3>
+                <div class="subcont flex justify-end">
+                    <p class="bg-white bg-opacity-20 text-white border-none rounded-full hover:text-green-400 transition duration-1000 ease-in-out">
+                        Syrphidae (moscas sírfidas), que imitan abejas.
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/info-animals/info-mosca.jpg') }}" class="w-48 mx-auto my-2 rounded-full" alt="Escarabajo">
+                <p class="w-8/12 border-none">
+                    Las moscas son insectos voladores que se alimentan de polen y néctar. Son fundamentales para la polinización de las plantas y la producción de miel.
+                </p>
+            </div>
+            <hr class="linea w-full">
+        </div>
+    </div>
+</main>
+<button id="scrollToTop" onclick="scrollToTop()">
+    <i class="fa-solid fa-chevron-up fa-beat"></i>
+    Subir
+</button>
+<footer>
+    <div class="redes" title="Navegación">
+        <p>
+            <b>Navegacion</b> 
+                <a href="{{ url_for('index') }}" class="footer-item">
+                    Inicio
+                </a>
+                <a href="{{ url_for('reviews') }}" class="footer-item" >
+                    Reviews
+                </a>
+                <a href="{{ url_for('sobre') }}" class="footer-item" >
+                    Sobre
+                </a>
+        </p>     
+    </div>
+    <div class="redes" title="Para contactar a danielxxomg">
+        <p>
+            <b>Contactanos</b>
+            <a href="https://guns.lol/danielxxomg" class="footer-item" target="_blank">
+                <i class="fa-regular fa-id-badge fa-flip text-2xl"></i>
+                Contacto Aqui    
+            </a>
+        </p>
+    </div>
+    <div class="redes" title="Mis redes sociales">
+        <p>
+            <b>Redes Sociales</b>
+            <span class="flex just">    
+                <a href="" class="footer-item" target="_blank" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a
+                ><a href="https://github.com/DANIELXXOMG2/proyecto_polinizadores" class="footer-item" target="_blank" title="Github">
+                    <i class="fa-brands fa-github"></i>
+                </a
+                ><a href="https://www.tiktok.com/@danielxxomg" class="footer-item" target="_blank" title="Tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </span>
+        </p>
+    </div>
+    <p title="Todos los derechos reservados a danielxxomg">© 2024 Insectos Polinizadores</p>
+</footer>  
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/hacker.webp') }}" type="image/x-icon"> <!--Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">  <!--Font Awesome-->
+    <!-- Links -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
+    <!-- FrameWroks -->
+    <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script> <!--HTMX Vinculacion-->
+    <!--JavaJs Personalizado-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body class="cursor-help bg-black">
+    <nav class="text-center text-white"> 
+        <a href="{{ url_for('index') }}">Salir Sesion</a>
+    </nav>
+    <div class="container3">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="/assets/img/video/hackerb.mp4" type="video/mp4">
+        </video>
+        <h1>Dashboard Administrativo</h1>
+        
+        <table>
+            <h2 class="p-4 text-lg font-semibold text-gray-700 text-center bg-gray-200 min-w-96">Registro de Usuarios</h2>
+            <thead class="bg-gray-100">
+                    <tr class="text-center">
+                        <th class="p-4  font-medium text-gray-500">ID</th>
+                        <th class="p-4  font-medium text-gray-500">Nombre</th>
+                        <th class="p-4  font-medium text-gray-500">Email</th>
+                        <th class="p-4 font-medium text-gray-500">Contraseña NoHash</th>
+
+                    </tr>
+                </thead>
+                <tbody class="bg-black text-center">
+                    {% for usuario in usuarios %}
+                    <tr class="border-t border-gray-100">
+                        <td class="p-5">{{ usuario.id }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.nombre }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.email }}</td>
+                        <td class="p-5 whitespace-nowrap">{{ usuario.password_ }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+</body>
+</html>

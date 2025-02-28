@@ -1,0 +1,16 @@
+# Ignorar la carpeta de dependencias de Node
+node_modules
+
+# Ignorar archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar el control de versiones
+.git
+.gitignore
+
+# Ignorar configuraciones de IDE
+.vscode
+
+.DS_Store
