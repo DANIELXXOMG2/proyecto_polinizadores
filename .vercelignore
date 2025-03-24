@@ -1,0 +1,17 @@
+# Archivos y carpetas a ignorar en el despliegue de Vercel
+.certs
+.git
+.github
+.vscode
+.idea
+__pycache__
+*.pyc
+node_modules
+venv
+env
+*.log
+docker
+db_data
+app/assets/img
+# No ignorar FontAwesome porque lo necesitamos
+# app/assets/fontawesome 

@@ -10,6 +10,7 @@ FROM python:3.9-slim
 # Instalar dependencias del sistema (libpq-dev para PostgreSQL, curl y unzip para descargar Font Awesome)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
+    gcc \
     curl \
     unzip \
     && rm -rf /var/lib/apt/lists/*

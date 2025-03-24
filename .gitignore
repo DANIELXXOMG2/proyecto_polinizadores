@@ -32,3 +32,4 @@ db_data/
 
 .env
 app/pgadmin/
+.vercel/
