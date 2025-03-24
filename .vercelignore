@@ -15,3 +15,5 @@ db_data
 app/assets/img
 # No ignorar FontAwesome porque lo necesitamos
 # app/assets/fontawesome 
+Dockerfile
+docker-compose.yml 

@@ -1,13 +1,8 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "api/index.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -15,8 +10,5 @@
       "src": "/(.*)",
       "dest": "api/index.py"
     }
-  ],
-  "env": {
-    "DATABASE_URL": "postgresql://insectos_polinizadores_f96i_user:m2rKK33I6kXcWNPm1vEbPlafwz9qMzc5@dpg-cvgp0ujqf0us73ckrvj0-a.oregon-postgres.render.com/insectos_polinizadores_f96i"
-  }
+  ]
 } 
