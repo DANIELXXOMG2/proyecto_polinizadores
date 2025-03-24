@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "insectos-polinizadores",
   "builds": [
     {
       "src": "api/index.py",
