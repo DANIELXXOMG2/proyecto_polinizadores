@@ -1,6 +1,3 @@
 Flask==2.3.2
-# Usamos psycopg2-binary versión mínima para Vercel
-psycopg2-binary==2.8.6
-sqlalchemy>=2.0
 Werkzeug==2.3.6
 python-dotenv==1.0.0 
