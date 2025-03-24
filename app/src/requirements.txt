@@ -3,4 +3,3 @@ psycopg2-binary==2.9.6  # Para desarrollo (en producción usa psycopg2)
 sqlalchemy>=2.0  # Versión compatible con el driver
 Werkzeug==2.3.6
 python-dotenv==1.0.0
-sqlalchemy-cockroachdb==2.0.2  # Driver oficial

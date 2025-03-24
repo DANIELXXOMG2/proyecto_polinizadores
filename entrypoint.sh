@@ -1,16 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-# Definir el directorio de destino donde queremos tener Font Awesome (que se mapea con tu carpeta local ./assets)
-TARGET_DIR="/usr/src/app/assets/fontawesome"
 
-# Si no existe la carpeta deseada, se descarga y se extrae Font Awesome, y se renombra la carpeta extraída
-if [ ! -d "$TARGET_DIR" ]; then
-  echo "Descargando FontAwesome..."
-  curl -L -o fontawesome.zip "https://use.fontawesome.com/releases/v6.7.2/fontawesome-free-6.7.2-web.zip"
-  mkdir -p /usr/src/app/assets
-  unzip fontawesome.zip -d /usr/src/app/assets
-  rm fontawesome.zip
-  # Renombrar la carpeta descargada al nombre deseado
-  mv /usr/src/app/assets/fontawesome-free-6.7.2-web "$TARGET_DIR"
+# Verificar si la carpeta fontawesome existe en app/assets
+if [ ! -d "/usr/src/app/assets/fontawesome" ]; then
+    echo "La carpeta fontawesome no existe. Descargando e instalando FontAwesome..."
+    
+    # Crear directorio temporal para la descarga
+    mkdir -p /tmp/fontawesome
+    
+    # Descargar la última versión de FontAwesome
+    curl -L -o /tmp/fontawesome.zip https://use.fontawesome.com/releases/v6.4.0/fontawesome-free-6.4.0-web.zip
+    
+    # Descomprimir en el directorio temporal
+    unzip -q /tmp/fontawesome.zip -d /tmp/fontawesome
+    
+    # Crear el directorio de destino si no existe
+    mkdir -p /usr/src/app/assets/fontawesome
+    
+    # Mover los archivos al directorio de destino
+    mv /tmp/fontawesome/fontawesome-free-6.4.0-web/* /usr/src/app/assets/fontawesome/
+    
+    # Limpiar archivos temporales
+    rm -rf /tmp/fontawesome /tmp/fontawesome.zip
+    
+    echo "FontAwesome ha sido instalado correctamente en app/assets/fontawesome."
 fi
+
+# Ejecutar el comando especificado o el predeterminado
 exec "$@"

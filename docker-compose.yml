@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: /docker/Dockerfile
+      dockerfile: docker/Dockerfile
     restart: always
     ports:
       - "5000:5000"
@@ -14,27 +14,7 @@ services:
       - ./app/templates:/usr/src/app/templates
       - usericons:/usr/src/app/usericons
       - ./.certs:/usr/src/app/.certs
-    depends_on:
-      db:
-        condition: service_healthy
-        
-  db:
-    image: postgres:13
-    restart: always
-    env_file:
-      - .env
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
+  
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -45,14 +25,10 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${DB_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
-    depends_on:
-      db:
-        condition: service_healthy
     volumes:
     - ./app/pgadmin:/var/lib/pgadmin
   
 volumes:
-  db_data:
   usericons:
 
 networks:

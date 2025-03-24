@@ -32,7 +32,7 @@ COPY . .
 # Exponer el puerto de la aplicación
 EXPOSE 5000
 
-ENV DATABASE_URL="cockroachdb://danielxxomg:<oEQz1nVngnnSzS2dK1tQ7w>@bee-sql-4869.jxf.gcp-us-central1.cockroachlabs.cloud:26257/insectos_polinizadores?sslmode=verify-full"
+ENV DATABASE_URL="postgresql://insectos_polinizadores_f96i_user:m2rKK33I6kXcWNPm1vEbPlafwz9qMzc5@dpg-cvgp0ujqf0us73ckrvj0-a.oregon-postgres.render.com/insectos_polinizadores_f96i"
 
 # Configurar el entrypoint para que se ejecute el script que descargará Font Awesome si es necesario, y después la app
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
