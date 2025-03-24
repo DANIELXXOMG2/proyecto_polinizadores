@@ -48,8 +48,18 @@ if os.path.exists(dot_env_path):
 else:
     load_dotenv()  # Intenta cargar desde el directorio actual
 
-# Configuración de CockroachDB
-DATABASE_URL = os.getenv('DATABASE_URL')
+# Configuración de la base de datos
+if is_vercel:
+    # En Vercel, construir la URL manualmente para asegurar la interpolación de variables
+    db_user = os.getenv('DB_USER', '')
+    db_password = os.getenv('DB_PASSWORD', '')
+    db_host = os.getenv('DB_HOST', '')
+    db_name = os.getenv('DB_NAME', '')
+    DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
+else:
+    # En otros entornos (como Render), usar DATABASE_URL directamente
+    DATABASE_URL = os.getenv('DATABASE_URL', '')
+
 if not DATABASE_URL:
     print("La variable de entorno DATABASE_URL no está definida.")
     if not is_vercel:  # Solo salir si no estamos en Vercel
@@ -133,23 +143,48 @@ def user():
 
                 nuevo_nombre = request.form.get('nombre')
                 nuevo_email = request.form.get('email')
-                nueva_password = request.form.get('password_')
+                nueva_password = request.form.get('nueva_password')
+                password_actual = request.form.get('password_actual')
 
-                if nuevo_email and nuevo_email != session.get('email'):
-                    if db_session.execute(
+                # Verificar contraseña actual
+                if password_actual and not check_password_hash(result[3], password_actual):
+                    flash('La contraseña actual no es correcta.')
+                    return redirect(url_for('user'))
+
+                # Actualizar campos modificados
+                if nuevo_nombre and nuevo_nombre != result[1]:
+                    db_session.execute(
+                        text("UPDATE Usuarios SET nombre = :nombre WHERE id = :id"),
+                        {"nombre": nuevo_nombre, "id": result[0]}
+                    )
+                    session['nombre'] = nuevo_nombre
+                    flash('Nombre actualizado.')
+
+                if nuevo_email and nuevo_email != result[2]:
+                    # Verificar si el nuevo email ya existe
+                    email_exists = db_session.execute(
                         text("SELECT COUNT(*) FROM Usuarios WHERE email = :email"),
                         {"email": nuevo_email}
-                    ).scalar() > 0:
-                        flash('El email ya está registrado por otro usuario.')
-                        return redirect(url_for('user'))
-
-                update_data = {}
-                if nuevo_nombre:
-                    update_data['nombre'] = nuevo_nombre
-                if nuevo_email:
-                    update_data['email'] = nuevo_email
-                if nueva_password:
-                    update_data['password_'] = generate_password_hash(nueva_password, method='pbkdf2:sha256')
+                    ).scalar()
+                    
+                    if email_exists:
+                        flash('Este correo electrónico ya está en uso.')
+                    else:
+                        db_session.execute(
+                            text("UPDATE Usuarios SET email = :email WHERE id = :id"),
+                            {"email": nuevo_email, "id": result[0]}
+                        )
+                        session['email'] = nuevo_email
+                        flash('Correo electrónico actualizado.')
+                
+                # Actualizar contraseña si se proporcionó una nueva y la actual fue verificada
+                if nueva_password and password_actual:
+                    hashed_password = generate_password_hash(nueva_password, method='pbkdf2:sha256')
+                    db_session.execute(
+                        text("UPDATE Usuarios SET password_ = :password WHERE id = :id"),
+                        {"password": hashed_password, "id": result[0]}
+                    )
+                    flash('Contraseña actualizada correctamente.')
 
                 if 'imagen_perfil' in request.files:
                     file = request.files['imagen_perfil']
@@ -157,21 +192,11 @@ def user():
                         filename = secure_filename(f"{session['nombre']}_{file.filename}")
                         filepath = os.path.join(UPLOAD_FOLDER, filename)
                         file.save(filepath)
-                        update_data['imagen_perfil'] = filename
-
-                if update_data:
-                    db_session.execute(
-                        text("UPDATE Usuarios SET " + ", ".join(f"{key} = :{key}" for key in update_data.keys()) + " WHERE email = :email"),
-                        {**update_data, "email": session.get('email')}
-                    )
-                    db_session.commit()
-
-                    if nuevo_nombre:
-                        session['nombre'] = nuevo_nombre
-                    if nuevo_email:
-                        session['email'] = nuevo_email
-
-                    flash('Perfil actualizado correctamente.')
+                        db_session.execute(
+                            text("UPDATE Usuarios SET imagen_perfil = :imagen_perfil WHERE id = :id"),
+                            {"imagen_perfil": filename, "id": result[0]}
+                        )
+                        db_session.commit()
 
                 return redirect(url_for('user'))
         except Exception as e:
@@ -193,8 +218,11 @@ def user():
                 if not result:
                     flash('Error: Usuario no encontrado.')
                     return redirect(url_for('logout'))
-
-        return render_template('/usuarios/user.html', usuario=result)
+        
+        return render_template('/usuarios/user.html', 
+                            nombre=result[0] if not isinstance(result, dict) else result['nombre'],
+                            email=result[1] if not isinstance(result, dict) else result['email'],
+                            imagen_perfil=result[2] if not isinstance(result, dict) else result['imagen_perfil'])
     except Exception as e:
         flash(f'Error al obtener datos: {str(e)}.')
         return redirect(url_for('index'))
@@ -326,13 +354,13 @@ def login():
                     {"email": email}
                 ).fetchone()
 
-                if result and check_password_hash(result['password_'], password_):
-                    registrar_ip(result['id'], result['nombre'], ip_address)
+                if result and check_password_hash(result[3], password_):
+                    registrar_ip(result[0], result[1], ip_address)
 
                     session.permanent = True
                     session['email'] = email
-                    session['nombre'] = result['nombre']
-                    session['user_id'] = result['id']
+                    session['nombre'] = result[1]
+                    session['user_id'] = result[0]
                     session['last_activity'] = datetime.now().isoformat()
 
                     flash('Inicio de sesión exitoso.')
