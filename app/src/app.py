@@ -31,6 +31,11 @@ else:
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 app.secret_key = os.environ.get('SECRET_KEY', '125436987')
 
+# Ruta para servir archivos estáticos directamente
+@app.route('/static/<path:filename>')
+def custom_static(filename):
+    return send_from_directory(static_dir, filename)
+
 # Directorio para almacenar imágenes de perfil
 UPLOAD_FOLDER = os.path.join(app.root_path, '..', 'usericons')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'gif'}
@@ -388,6 +393,10 @@ def sobre():
 @app.route('/animales')
 def animales():
     return render_template('/contenido/animals.html')
+
+@app.route('/animals')
+def animals_redirect():
+    return redirect(url_for('animales'))
 
 @app.errorhandler(404)
 def page_not_found(e):

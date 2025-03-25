@@ -7,7 +7,8 @@
         <!-- Links -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">  <!--Styless-->
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/FAVicon/usericon.png') }}" type="image/x-icon"> <!--Favicon-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">  <!--Font Awesome-->
+        <!-- Reemplazar FontAwesome local por CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script> <!--AlpineJs Vinculacion-->
         <!-- FrameWroks -->
         <script src="https://cdn.tailwindcss.com"></script> <!--TailWindCSS Vinculacion-->
@@ -51,13 +52,13 @@
             </ul>
         </nav>
     </header>
-    <main class="bg-green-900 bg-opacity-50"> 
-        <form action="{{ url_for('user') }}" method="post" class="flex flex-col bg-white bg-opacity-15 items-center justify-center text-center gap-6 w-4/12 max-w-xl border-2 border-black rounded-md py-8" enctype="multipart/form-data">
+    <main class="bg-green-900 bg-opacity-50 p-4"> 
+        <form action="{{ url_for('user') }}" method="post" class="flex flex-col bg-white bg-opacity-15 items-center justify-center text-center gap-6 w-full md:w-10/12 lg:w-8/12 xl:w-6/12 max-w-xl mx-auto border-2 border-black rounded-md py-8 px-4" enctype="multipart/form-data">
             <h1 class="text-3xl text-white">{{ session.get('nombre', 'Usuario') }}</h1>
 
             <div class="relative">
                 <img id="profile-pic" class="profile-pic w-32 h-32 border-4 border-white bg-white bg-opacity-50 rounded-full p-3 object-cover"
-                src="{{ url_for('usericons_static', filename=imagen_perfil) if imagen_perfil else url_for('static', filename='img/usericons/usericon.png') }}"
+                src="{{ url_for('usericons_static', filename=imagen_perfil) if imagen_perfil else url_for('static', filename='img/FAVicon/usericon.png') }}"
                 alt="Imagen de perfil">            <label for="insertimg" class="absolute bottom-0 right-0 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 cursor-pointer">
                 <i class="fa-solid fa-camera"></i>
                 </label>

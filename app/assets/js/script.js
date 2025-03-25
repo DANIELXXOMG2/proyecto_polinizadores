@@ -6,14 +6,18 @@ if (verticalDiv) {
     });
 }
 
-document.getElementById('paste-icon').addEventListener('click', async () => {
-    try {
-        const text = await navigator.clipboard.readText();
-        document.getElementById('admin_token').value = text;
-    } catch (err) {
-        console.error('Error al acceder al portapapeles: ', err);
-    }
-}); 
+// Verificar si el elemento existe antes de agregar el event listener
+const pasteIcon = document.getElementById('paste-icon');
+if (pasteIcon) {
+    pasteIcon.addEventListener('click', async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            document.getElementById('admin_token').value = text;
+        } catch (err) {
+            console.error('Error al acceder al portapapeles: ', err);
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('insertimg');
@@ -58,5 +62,3 @@ function scrollToTop() {
         behavior: 'smooth' // Desplazamiento suave
     });
 }
-
-
