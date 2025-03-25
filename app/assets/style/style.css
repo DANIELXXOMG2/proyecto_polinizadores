@@ -969,6 +969,21 @@ footer .redes p{
     }
 }
 
+@media screen and (min-width: 769px) and (max-width: 850px) {
+    .formu {
+        width: 45%;
+        min-width: 350px;
+    }
+    
+    .formu:hover {
+        width: 45%;
+    }
+    
+    .formu fieldset {
+        width: 85%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     h2 {
         font-size: 1.5rem !important;
@@ -1239,10 +1254,11 @@ footer .redes p{
     }
 
     footer {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
         width: 95%;
+        padding: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
     }
 
     .redes {
@@ -1307,3 +1323,124 @@ footer .redes p{
 .bg-green-100 { background-color: #d1e7dd; }
 .border-green-400 { border-color: #256346; }
 .text-green-700 { color: #164e3c; }
+
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .menu h1 {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .menu .user {
+        width: 100%;
+    }
+
+    .menu ul {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    main p {
+        width: 90%;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .container .articleindex {
+        width: 90%;
+    }
+
+    .formu {
+        width: 90%;
+        min-width: 300px;
+    }
+
+    .formu:hover {
+        width: 90%;
+    }
+
+    .interact {
+        display: none;
+    }
+}
+
+/* Agregamos media query específica para resoluciones entre 769px y 850px */
+@media screen and (min-width: 769px) and (max-width: 850px) {
+    .formu {
+        width: 45%;
+        min-width: 350px;
+    }
+    
+    .formu:hover {
+        width: 45%;
+    }
+    
+    .formu fieldset {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 1.5rem !important;
+        text-align: center;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grid-item img {
+        width: 150px;
+    }
+
+    .grid-item img:hover {
+        width: 160px;
+    }
+
+    figure img {
+        width: 100%;
+        height: auto;
+    }
+
+    figure img:hover {
+        width: 100%;
+    }
+
+    .credenciales {
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .credenciales label {
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .redes {
+        width: 100%;
+    }
+
+    #scrollToTop {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+    }
+}

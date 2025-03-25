@@ -48,10 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 window.onscroll = function() {
     const button = document.getElementById("scrollToTop");
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        button.style.display = "block";
-    } else {
-        button.style.display = "none";
+    // Verificar si el botón existe antes de manipularlo
+    if (button) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            button.style.display = "block";
+        } else {
+            button.style.display = "none";
+        }
     }
 };
 
