@@ -582,46 +582,43 @@ section pre a {
 
 /** FORMULARIOS */
 
+/* Estilos fijos para formularios de login y registro */
 .formu {
     display: flex;
-    flex-direction: column;
-    width: 30%;
-    max-width: 50rem;
-    text-align: center;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    padding: 20px;
-    color: white;
-    background-color: #202020e1;
-    border-radius: 20px;
-    transition: 1s;
+    width: 100%;
+    margin: 2rem auto;
 }
-.formu:hover {
-    width: 28%;
-}
+
 .formu fieldset {
-    width: 80%;
+    width: 350px; /* Tamaño fijo en lugar de porcentaje */
+    min-height: 400px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 5%;
+    padding: 2rem;
     border: 3px solid#eeba0b;
     border-radius: 20px;
+    margin: 0 auto; /* Centrar el fieldset */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para mejor legibilidad */
 }
+
 .formu fieldset:hover {
     border: 3px solid #ffe6a7;
     transition: 2s;
 }
+
 .formu fieldset img {
     width: 6rem;
-    margin-bottom: 3vh;
+    margin-bottom: 2rem;
     padding: 10px;
     border-radius: 10px;
     border: 0.5px solid rgba(255, 255, 255, 0.064);
     transition: 1s;
     object-fit: cover;
 }
+
 .formu fieldset img:hover {
     width: 7rem;
     padding: 10px;
@@ -631,6 +628,7 @@ section pre a {
     cursor: crosshair;
     filter: contrast(160%);
 }
+
 .formu fieldset img:active {
     width: 7rem;
     padding: 10px;
@@ -638,6 +636,7 @@ section pre a {
     background-color: rgba(255, 255, 255, 0.164);
     border-radius: 50px;
 }
+
 .formu fieldset h2 {
     font-size: 1.6rem;
     margin: 10px 0 10px 0;
@@ -647,6 +646,7 @@ section pre a {
     transition: all 1s;
     text-shadow: none;
 }
+
 .formu fieldset h2:active {
     background: linear-gradient(to right, #f6bd60, lightcoral);
     background-clip: text;
@@ -654,45 +654,54 @@ section pre a {
     text-shadow: none;
     padding: 5px;
 }
+
 .formu fieldset h2, input, img {
     transition: all 1s;
 }
+
 .formu fieldset input {
     width: 80%;
     text-align: center;
-    font-size: 12px;
-    margin-bottom: 10px;
-    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding: 8px;
     border-radius: 50px;
     color: black;
 }
+
 .formu fieldset input:hover {
     background-color: #b9d5af;
 }
+
 .formu fieldset input:focus {
     background-color: rgb(217, 217, 153);
 }
+
 .formu fieldset a {
     width: 70%;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 8px;
+    margin-bottom: 15px;
+    text-align: center;
     text-decoration: none;
     color: white;
     border-radius: 8px;
-    border-bottom: 1px solid white; border-top: 1px solid white;
+    border-bottom: 1px solid white; 
+    border-top: 1px solid white;
     transition: 0.7s;
 }
+
 .formu fieldset a:hover {
     background-color: rgba(255, 255, 255, 0.212);
     border-radius: 16px;
     border-bottom: 1px solid white;
 }
+
 .formu fieldset button{
     width: 45%;
     justify-content: center;
     text-align: center;
-    font-size: 13px;
-    padding: 7px;
+    font-size: 14px;
+    padding: 8px;
     margin: 5px 0 20px 0;
     color: black;
     border: none;
@@ -700,78 +709,38 @@ section pre a {
     background-color: #eeba0b;  
     transition: 1s;
 }
+
 .formu fieldset button:hover {
     border-radius: 15px;
     background-color: green;
     color: white;
 }
+
 .formu fieldset button:active {
     background-color: rgba(47, 79, 79, 0.118);
 }
+
 .formu fieldset .forgot {
-    width: 100%;    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .formu fieldset .forgot a {
     font-size: 12px;
     padding: 7px;
     border: none;
 }
-#password {
-    margin: 0 0 1rem 0;
+
+/* Asegurar que los formularios se vean bien en todos los dispositivos */
+@media screen and (max-width: 400px) {
+    .formu fieldset {
+        width: 300px;
+        padding: 1.5rem;
+    }
 }
-.credenciales {
-    width: 70%;
-    display: flex;
-    padding: 10px;
-    justify-content: space-around;
-    text-shadow: white 1px 1px 1px; 
-}
-.credenciales label {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    padding: 5px;
-    background-color: lightgreen;
-    color: black;
-    border-radius: 20px;
-}
-.credenciales label:hover {
-    color: white;
-    text-shadow: black 1px 1px 1px; 
-    background-color: rgb(85, 166, 85);
-}
-.credenciales input {
-    width: 70%;
-    padding: 5px;
-    color: black;
-    margin-left: 5px;
-    border-radius: 10px;
-    background-color: #ecede9;
-}
-.credenciales input:hover {
-    background-color: black;
-    color: white;
-}
-#usernav{
-    background-color: #84a98c;
-}
-#user:hover {
-    background-color: rgba(144, 238, 144, 0.484);
-}
-#usersubmit {
-    border-radius: 50px;
-    padding: 10px 20px;
-    background-color: #344e41;
-    transition: all 0.5s;
-    cursor: url(/assets/img/cursors/tiger--pointer.png), auto;
-}
-#usersubmit input {
-    margin-right: 10px;
-}
-#usersubmit:hover {
-    background-color: #2d6a4f;
-}
+
 /**? Contendores Animales */
 .cont1 {
     width: 600px;
@@ -1035,144 +1004,6 @@ footer .redes p{
     #scrollToTop {
         width: 60px;
         height: 60px;
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .menu h1 {
-        font-size: 16px;
-    }
-
-    .grid-item {
-        padding: 5px;
-    }
-
-    .formu fieldset {
-        width: 95%;
-        padding: 2%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    main.flex-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cont1 {
-        width: 90%;
-        margin: 0 auto;
-        gap: 2rem;
-    }
-
-    .cont3 {
-        width: 90%;
-        padding: 2rem;
-        margin: 0 auto;
-    }
-
-    .cont3 p {
-        width: 100%;
-    }
-
-    .slider-animals {
-        width: 100%;
-        margin: 0 auto;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .cont2 {
-        margin: 10px auto;
-        width: 90%;
-    }
-
-    .animal {
-        text-align: center;
-    }
-
-    .subcont {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-    }
-
-    .subcont p {
-        width: 90%;
-        text-align: center;
-    }
-
-    .cont3 .redes {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .cont2 h2 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-
-    .animal img {
-        width: 80%;
-    }
-
-    .animal p {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .slider-frame {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .container {
-        height: auto;
-    }
-
-    .articlereview {
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .comentarios-container {
-        padding: 1rem;
-    }
-
-    .comentario {
-        width: 90%;
-    }
-
-    form.group {
-        width: 95%;
-    }
-
-    textarea {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .slider-frame h2 {
-        font-size: 1.5rem;
-    }
-
-    .comentario {
-        padding: 0.5rem;
-    }
-
-    .comentario .flex {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    form.group legend {
         font-size: 1rem;
     }
 }
